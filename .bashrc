@@ -3,6 +3,9 @@
 # Path to the bash it configuration
 export BASH_IT="$HOME/bash-it"
 
+# Point bash-it to custom bash directory (which is under SVC).
+export BASH_IT_CUSTOM="$HOME/.config/bash"
+
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
 export BASH_IT_THEME='powerline'

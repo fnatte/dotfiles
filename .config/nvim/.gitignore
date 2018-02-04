@@ -1,0 +1,4 @@
+*.old
+spell/*.spl
+plugged/*
+
