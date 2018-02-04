@@ -26,9 +26,15 @@ export EDITOR=nvim
 
 export GOPATH=~/Code/go
 
+export USER_HOME=$HOME
+
+export NVM_DIR="$HOME/.nvm"
+
 # Set vcprompt executable path for scm advance info in prompt (demula theme)
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
+
+[[ -f $HOME/.secrets.sh ]] && source "$HOME/.secrets.sh"
 
 # Load Bash It
 source $BASH_IT/bash_it.sh
@@ -37,16 +43,23 @@ if [ "$(uname)" == "Darwin" ]; then
 	# Prevent ctrl-d from exit shell
 	set -o ignoreeof
 	echo ""
+
+	export PATH=$PATH:/usr/local/texlive/2016basic/bin/x86_64-darwin
+	source "/usr/local/opt/nvm/nvm.sh"
 else
 	setxkbmap -layout 'us,se' -option 'grp:switch'
 	setxkbmap -option caps:escape
 
-	export LC_ALL=en_US.utf-8 
+	export LC_ALL=en_US.utf-8
 	export LANG="$LC_ALL"
 fi
 
 PATH=$PATH:~/.gem/ruby/2.3.0/bin
 PATH=$PATH:~/.config/composer/vendor/bin
 PATH=$PATH:$GOPATH/bin
+PATH="$PATH:$(yarn global bin)"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
