@@ -3,6 +3,9 @@
 # Path to the bash it configuration
 export BASH_IT="$HOME/bash-it"
 
+# Point bash-it to custom bash directory (which is under SVC).
+export BASH_IT_CUSTOM="$HOME/.config/bash"
+
 # Lock and Load a custom theme file
 # location /.bash_it/themes/
 export BASH_IT_THEME='powerline'
@@ -30,6 +33,10 @@ export USER_HOME=$HOME
 
 export NVM_DIR="$HOME/.nvm"
 
+export GPG_TTY=`tty`
+
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+
 # Set vcprompt executable path for scm advance info in prompt (demula theme)
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
@@ -50,8 +57,15 @@ else
 	setxkbmap -layout 'us,se' -option 'grp:switch'
 	setxkbmap -option caps:escape
 
-	export LC_ALL=en_US.utf-8
+	# Make sure we are not in caps
+	CAPS_LOCK_STATE=$(xset q | awk '/Caps Lock/ {print $4}')
+	[ "$CAPS_LOCK_STATE" == "on" ] && xdotool key Caps_Lock
+
+	export LC_ALL=en_US.UTF-8
 	export LANG="$LC_ALL"
+
+	export CHROME_BIN=/usr/bin/chromium
+	export BIOMBO_REPO=~/Code/biombo/repo
 fi
 
 PATH=$PATH:~/.gem/ruby/2.3.0/bin
@@ -60,6 +74,4 @@ PATH=$PATH:$GOPATH/bin
 PATH="$PATH:$(yarn global bin)"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
-
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 

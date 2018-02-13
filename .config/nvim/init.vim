@@ -7,13 +7,12 @@
 autocmd! BufWritePost *.vim source $MYVIMRC
 
 function! DoRemote(arg)
-		UpdateRemotePlugins
+	UpdateRemotePlugins
 endfunction
 
 call plug#begin()
 
 " General
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -22,8 +21,13 @@ Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/denite.nvim'
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/goyo.vim'
+Plug 'vim-scripts/vis'
 Plug 'reedes/vim-pencil'
+Plug 'romainl/vim-qf'
+Plug 'jamessan/vim-gnupg'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'emlow/vim-spellbuild'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 
@@ -44,7 +48,6 @@ Plug 'fatih/vim-go'
 Plug 'vim-scripts/MSIL-Assembly'
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
-Plug 'hail2u/vim-css3-syntax'
 Plug 'plasticboy/vim-markdown'
 Plug 'shime/vim-livedown'
 Plug 'guns/vim-clojure-static'
@@ -53,6 +56,12 @@ Plug 'guns/vim-clojure-highlight'
 Plug 'tpope/vim-salve'
 Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
+Plug 'hail2u/vim-css3-syntax'
+
+" For vim only
+if !has('nvim')
+Plug 'tpope/vim-sensible'
+endif
 
 call plug#end()
 
@@ -60,11 +69,12 @@ colo seoul256
 let mapleader = ','
 let maplocalleader = "\\"
 set noerrorbells
-set tabstop=4 shiftwidth=4
 set list lcs=tab:\¦\
+set tabstop=4 shiftwidth=4
+set number
 
 if !has('nvim')
-		set encoding=utf-8
+	set encoding=utf-8
 endif
 
 " Map capital wq letters to lower, cuz of typos
@@ -72,11 +82,6 @@ command! WQ wq
 command! Wq wq
 command! W w
 command! Q q
-
-" Relative numbers
-set rnu
-au BufEnter * set nu
-au BufEnter * set relativenumber
 
 " Highlight current line in current buffer
 set cursorline
@@ -92,7 +97,7 @@ set matchpairs+=<:>
 set scrolloff=3
 
 " Fix slow syntax highlighting for long lines
-set synmaxcol=128
+set synmaxcol=180
 
 " Make double-<Esc> clear search highlights
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
@@ -104,21 +109,9 @@ set wildmode=longest:full,full
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▶'
 let g:NERDTreeDirArrowCollapsible = '◀'
-let NERDTreeIgnore = [
-	\'\.aux$',
-	\'\.fls$',
-	\'\.run\.xml$',
-	\'\.synctex\.gz$',
-	\'\.bbl$',
-	\'\.bcf$',
-	\'\.blg$',
-	\'\.cb$',
-	\'\.fdb_latexmk$',
-	\'\.out$',
-	\'\.fls$',
-	\'\.toc$',
-	\'\.pdf$'
-	\]
+let g:NERDTreeIgnore = ['\.aug$', '\.fdb_latexmk$', '\.fls$', '\.aux$', '\.cb$',
+			\ '\.bib$', '\.bbl$', '\.bcf$', '\.blg$', '\.out$', '\.pdf$',
+			\ '\.lof$', '\.toc$', '\.synctex\.gz$', '\.run\.xml$', '\~$']
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -169,7 +162,14 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+" Javascript
+let g:javascript_plugin_jsdoc = 1
+au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
+
+" Javascript/Typescript
+au FileType typescript,javascript set backupcopy=yes
 
 " Ack/ag
 let g:ackprg = 'ag --vimgrep --smart-case'
@@ -178,36 +178,56 @@ cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
 
-" Latex
-let g:vimtex_quickfix_mode = 0 "quickfix window not opened automatically
-" let g:vimtex_view_method = 'skim'
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
-let g:tex_flavor = 'latex'
-function! UpdateSkim(status)
-	if !a:status | return | endif
-
-	let l:out = b:vimtex.out()
-	let l:tex = expand('%:p')
-	let l:cmd = [g:vimtex_view_general_viewer, '-r']
-	if !empty(system('pgrep Skim'))
-		call extend(l:cmd, ['-g'])
-	endif
-	if has('nvim')
-		call jobstart(l:cmd + [line('.'), l:out, l:tex])
-	elseif has('job')
-		call job_start(l:cmd + [line('.'), l:out, l:tex])
-	else
-		call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
-	endif
-endfunction
-
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
 
-" Javascript
-let g:javascript_plugin_jsdoc = 1
-au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
+" Latex
+if has('macunix')
+	let g:vimtex_quickfix_mode = 0 "quickfix window not opened automatically
+	" let g:vimtex_view_method = 'skim'
+	let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+	let g:vimtex_view_general_options = '-r @line @pdf @tex'
+	let g:vimtex_compiler_progname = 'nvr'
+	let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
+	let g:tex_flavor = 'latex'
+	function! UpdateSkim(status)
+		if !a:status | return | endif
+
+		let l:out = b:vimtex.out()
+		let l:tex = expand('%:p')
+		let l:cmd = [g:vimtex_view_general_viewer, '-r']
+		if !empty(system('pgrep Skim'))
+			call extend(l:cmd, ['-g'])
+		endif
+		if has('nvim')
+			call jobstart(l:cmd + [line('.'), l:out, l:tex])
+		elseif has('job')
+			call job_start(l:cmd + [line('.'), l:out, l:tex])
+		else
+			call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+		endif
+	endfunction
+else
+	let g:vimtex_view_method = 'zathura'
+endif
+
+
+function! s:goyo_enter()
+	set noshowcmd
+	set noshowmode
+	set scrolloff=999
+	set nocursorline
+	Limelight
+endfunction
+
+function! s:goyo_leave()
+	set showcmd
+	set showmode
+	set scrolloff=3
+	set cursorline
+	Limelight!
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
