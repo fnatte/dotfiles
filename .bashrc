@@ -61,7 +61,7 @@ else
 	CAPS_LOCK_STATE=$(xset q | awk '/Caps Lock/ {print $4}')
 	[ "$CAPS_LOCK_STATE" == "on" ] && xdotool key Caps_Lock
 
-	export LC_ALL=en_US.utf-8
+	export LC_ALL=en_US.UTF-8
 	export LANG="$LC_ALL"
 
 	export CHROME_BIN=/usr/bin/chromium
