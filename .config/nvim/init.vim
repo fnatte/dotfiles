@@ -30,6 +30,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'emlow/vim-spellbuild'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'prettier/vim-prettier'
 
 " Look
 Plug 'junegunn/seoul256.vim'
@@ -230,4 +231,7 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" Prettier
+let g:prettier#exec_cmd_async = 1
 
