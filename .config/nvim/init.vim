@@ -140,17 +140,17 @@ autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 " Denite
 call denite#custom#var('file_rec', 'command',
-  \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+  \ ['rg', '--files', '--color', 'never'])
 
 " Navigate with jk in insert
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 
 " Ag command on grep source
-call denite#custom#var('grep', 'command', ['ag'])
-call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
@@ -172,8 +172,8 @@ au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
 " Javascript/Typescript
 au FileType typescript,javascript set backupcopy=yes
 
-" Ack/ag
-let g:ackprg = 'ag --vimgrep --smart-case'
+" Ack/ag/rg
+let g:ackprg = 'rg --vimgrep --smart-case'
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
