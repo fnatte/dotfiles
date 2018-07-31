@@ -27,7 +27,6 @@ Plug 'romainl/vim-qf'
 Plug 'jamessan/vim-gnupg'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'emlow/vim-spellbuild'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier'
@@ -234,4 +233,18 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Prettier
 let g:prettier#exec_cmd_async = 1
+
+" Auto build spell files
+let s:dirs = split(globpath(&rtp, 'spell'), '\n')
+for s:dir in s:dirs
+	let s:add_files = split(globpath(s:dir, '*.add'), '\n')
+	for s:add_file in s:add_files
+		let s:spl_file = s:add_file . '.spl'
+		let s:has_access = filereadable(s:add_file) && filewritable(s:add_file) == 1
+		if s:has_access && getftime(s:add_file) > getftime(s:spl_file)
+			silent exec 'mkspell! ' . fnameescape(s:add_file)
+		endif
+	endfor
+endfor
+
 
