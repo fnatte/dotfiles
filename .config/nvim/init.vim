@@ -16,30 +16,39 @@ call plug#begin()
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-abolish'
 Plug 'scrooloose/nerdtree'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/denite.nvim'
+Plug 'chemzqm/unite-location'
+Plug 'Shougo/echodoc.vim'
 Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/vis'
-Plug 'reedes/vim-pencil'
 Plug 'romainl/vim-qf'
 Plug 'jamessan/vim-gnupg'
-Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier'
 
+" Writing
+Plug 'ron89/thesaurus_query.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'reedes/vim-pencil'
+
 " Look
 Plug 'junegunn/seoul256.vim'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'Yggdroot/indentLine' " Show vertical line for tabs
 
 " Language
 Plug 'lervag/vimtex'
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'Quramy/tsuquyomi'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'm2mdas/phpcomplete-extended'
 Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-php-cs-fixer'
@@ -57,6 +66,7 @@ Plug 'tpope/vim-salve'
 Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'jxnblk/vim-mdx-js'
 
 " For vim only
 if !has('nvim')
@@ -72,6 +82,10 @@ set noerrorbells
 set list lcs=tab:\¦\
 set tabstop=4 shiftwidth=4
 set number
+
+" Using echodoc, we need in increased 'cmdheight' value.
+set cmdheight=2
+let g:echodoc_enable_at_startup = 1
 
 if !has('nvim')
 	set encoding=utf-8
@@ -126,7 +140,7 @@ let g:php_cs_fixer_config_file = '.php_cs'
 " Auto completion
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
-let g:deoplete#sources._=['omni', 'buffer', 'member', 'tag', 'file']
+let g:deoplete#sources.php=['omni', 'buffer', 'member', 'tag', 'file']
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.php = [
 		\'[^. \t0-9]\.\w*',
@@ -139,7 +153,7 @@ autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 " Denite
 call denite#custom#var('file_rec', 'command',
-  \ ['rg', '--files', '--color', 'never'])
+  \ ['rg', '--files', '--color', 'never', '--glob', '!.git'])
 
 " Navigate with jk in insert
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
@@ -152,9 +166,14 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#source('grep', 'converters', ['converter/abbr_word'])
+
+" Thesaurus
+nnoremap <Leader>tcw :ThesaurusQueryReplaceCurrentWord<CR>
 
 nnoremap <c-p> :Denite file_rec<CR>
-nnoremap <Leader>g :Denite grep<CR>
+nnoremap <leader>g :Denite grep<CR>
+nnoremap <silent> <leader>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
 
 " Go
 let g:go_fmt_command = "goimports"
@@ -162,14 +181,13 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <leader>e <Plug>(go-rename)
 
 " Javascript
-let g:javascript_plugin_jsdoc = 1
 au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
 
 " Javascript/Typescript
-au FileType typescript,javascript set backupcopy=yes
+au FileType typescript,typescriptreact,javascript set backupcopy=yes
 
 " Ack/ag/rg
 let g:ackprg = 'rg --vimgrep --smart-case'
@@ -181,9 +199,23 @@ cnoreabbrev AG Ack
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
 
+" Do not conceal markdown
+let g:vim_markdown_conceal = 0
+
+" Typescript
+let g:nvim_typescript#signature_complete = 1
+au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> K :TSDoc<CR>
+au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <leader>tdp :TSDefPreview<CR>
+au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <leader>ti :TSImport<CR>
+au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <leader>tr :TSRename<CR>
+au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <c-]> :TSTypeDef<CR>
+au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <c-=> :TSDef<CR>
+
 " Latex
 if has('macunix')
+	let g:vimtex_quickfix_enabled = 0
 	let g:vimtex_quickfix_mode = 0 "quickfix window not opened automatically
+	let g:vimtex_quickfix_open_on_warning = 0
 	" let g:vimtex_view_method = 'skim'
 	let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 	let g:vimtex_view_general_options = '-r @line @pdf @tex'
@@ -209,6 +241,7 @@ if has('macunix')
 	endfunction
 else
 	let g:vimtex_view_method = 'zathura'
+	let g:vimtex_compiler_progname = 'nvr'
 endif
 
 
@@ -247,4 +280,6 @@ for s:dir in s:dirs
 	endfor
 endfor
 
+let $NVIM_NODE_LOG_FILE='nvim-node.log'
+let $NVIM_NODE_LOG_LEVEL='warn'
 
