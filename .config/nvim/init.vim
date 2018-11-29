@@ -79,7 +79,7 @@ colo seoul256
 let mapleader = ','
 let maplocalleader = "\\"
 set noerrorbells
-set list lcs=tab:\¦\
+set list lcs=tab:¦\ " Comment to prevent removal of last space
 set tabstop=4 shiftwidth=4
 set number
 
