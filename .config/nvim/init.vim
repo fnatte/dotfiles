@@ -44,11 +44,15 @@ Plug 'junegunn/seoul256.vim'
 Plug 'Yggdroot/indentLine' " Show vertical line for tabs
 
 " Language
+Plug 'autozimu/LanguageClient-neovim', {
+	\ 'branch': 'next',
+	\ 'do': 'bash install.sh',
+	\ }
 Plug 'lervag/vimtex'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+" Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'm2mdas/phpcomplete-extended'
 Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-php-cs-fixer'
@@ -82,6 +86,7 @@ set noerrorbells
 set list lcs=tab:¦\ " Comment to prevent removal of last space
 set tabstop=4 shiftwidth=4
 set number
+set hidden " Required by LanguageClient-neovim
 
 " Using echodoc, we need in increased 'cmdheight' value.
 set cmdheight=2
@@ -113,8 +118,8 @@ set scrolloff=3
 " Fix slow syntax highlighting for long lines
 set synmaxcol=180
 
-" Make double-<Esc> clear search highlights
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+" Make double-<Esc> clear search highlights and close preview window
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>:pc<CR>
 
 " Bash-like auto complete
 set wildmode=longest:full,full
@@ -137,7 +142,11 @@ let g:indentLine_concealcursor=""
 let g:phpcomplete_index_composer_command = 'composer'
 let g:php_cs_fixer_config_file = '.php_cs'
 
-" Auto completion
+
+
+"""""""""""""""""""
+" Auto completion "
+"""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.php=['omni', 'buffer', 'member', 'tag', 'file']
@@ -148,12 +157,27 @@ let g:deoplete#omni#input_patterns.php = [
 		\'[^. \t0-9]\::\w*',
 		\]
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> and jk to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
 autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
-" Denite
+
+
+""""""""""
+" Denite "
+""""""""""
 call denite#custom#var('file_rec', 'command',
-  \ ['rg', '--files', '--color', 'never', '--glob', '!.git'])
+	\ ['rg', '--files', '--color', 'never', '--glob', '!.git'])
 
 " Navigate with jk in insert
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
@@ -168,12 +192,13 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source('grep', 'converters', ['converter/abbr_word'])
 
-" Thesaurus
-nnoremap <Leader>tcw :ThesaurusQueryReplaceCurrentWord<CR>
-
 nnoremap <c-p> :Denite file_rec<CR>
 nnoremap <leader>g :Denite grep<CR>
-nnoremap <silent> <leader>l  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
+nnoremap <silent> <leader>ll  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
+
+
+" Thesaurus
+nnoremap <Leader>tcw :ThesaurusQueryReplaceCurrentWord<CR>
 
 " Go
 let g:go_fmt_command = "goimports"
@@ -187,7 +212,8 @@ au FileType go nmap <leader>e <Plug>(go-rename)
 au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
 
 " Javascript/Typescript
-au FileType typescript,typescriptreact,javascript set backupcopy=yes
+" Not sure if this is needed anymore
+" au FileType typescript,javascript set backupcopy=yes
 
 " Ack/ag/rg
 let g:ackprg = 'rg --vimgrep --smart-case'
@@ -202,14 +228,14 @@ let g:vim_json_syntax_conceal = 0
 " Do not conceal markdown
 let g:vim_markdown_conceal = 0
 
-" Typescript
-let g:nvim_typescript#signature_complete = 1
-au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> K :TSDoc<CR>
-au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <leader>tdp :TSDefPreview<CR>
-au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <leader>ti :TSImport<CR>
-au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <leader>tr :TSRename<CR>
-au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <c-]> :TSTypeDef<CR>
-au FileType typescript,typescript.tsx,typescriptreact nmap <buffer> <silent> <c-=> :TSDef<CR>
+" Typescript (now using LSP)
+" let g:nvim_typescript#signature_complete = 1
+" au FileType typescript,typescript.tsx nmap <buffer> <silent> K :TSDoc<CR>
+" au FileType typescript,typescript.tsx nmap <buffer> <silent> <leader>tdp :TSDefPreview<CR>
+" au FileType typescript,typescript.tsx nmap <buffer> <silent> <leader>ti :TSImport<CR>
+" au FileType typescript,typescript.tsx nmap <buffer> <silent> <leader>tr :TSRename<CR>
+" au FileType typescript,typescript.tsx nmap <buffer> <silent> <c-]> :TSTypeDef<CR>
+" au FileType typescript,typescript.tsx nmap <buffer> <silent> <c-=> :TSDef<CR>
 
 " Latex
 if has('macunix')
@@ -263,6 +289,46 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+""""""""""""""""""""""""""""""""""
+" Language Server Protocol (LSP) "
+""""""""""""""""""""""""""""""""""
+let g:LanguageClient_serverCommands = {
+	\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+	\ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
+	\ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
+	\ 'typescript.tsx': ['/usr/local/bin/typescript-language-server', '--stdio']
+	\ }
+
+function! LC_maps()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+		nnoremap <buffer> <slient> <F5>        :call LanguageClient_contextMenu()<CR>
+		nnoremap <buffer> <silent> K           :call LanguageClient#textDocument_hover()<CR>
+		nnoremap <buffer> <silent> gdp         :call LanguageClient#textDocument_typeDefinition()<CR>
+		nnoremap <buffer> <silent> gd          :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <buffer> <silent> <c-]>       :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <buffer> <silent> <F2>        :call LanguageClient#textDocument_rename()<CR>
+		nnoremap <buffer> <silent> <leader>r   :call LanguageClient#textDocument_rename()<CR>
+
+		nnoremap <buffer> <silent> <leader>c  :Denite contextMenu<CR>
+		nnoremap <buffer> <silent> <leader>ls :Denite documentSymbol<CR>
+		nnoremap <buffer> <silent> <leader>lr :Denite references<CR>
+	endif
+endfunction
+autocmd FileType * call LC_maps()
+
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal signcolumn=yes
+
+" Alternative language server
+" 'typescript': ['/usr/local/bin/javascript-typescript-stdio', '--enable-jaeger', '-t', '-l', 'test.log'],
+" 'typescript.tsx': ['/usr/local/bin/javascript-typescript-stdio', '--enable-jaeger', '-t', '-l', 'test.log'],
+
+" To enable logging:
+" let $RUST_BACKTRACE = 1
+" let g:LanguageClient_loggingLevel = 'INFO'
+" let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
+" let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
 
 " Prettier
 let g:prettier#exec_cmd_async = 1
