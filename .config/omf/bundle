@@ -1,0 +1,5 @@
+package foreign-env
+package neovim
+package nvm
+theme bobthefish
+theme default
