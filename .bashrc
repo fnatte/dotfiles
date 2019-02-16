@@ -28,6 +28,7 @@ export SCM_CHECK=true
 export EDITOR=nvim
 
 export GOPATH=~/Code/go
+export GOROOT=/usr/lib/go
 
 export USER_HOME=$HOME
 
@@ -66,6 +67,9 @@ else
 
 	export CHROME_BIN=/usr/bin/chromium
 	export BIOMBO_REPO=~/Code/biombo/repo
+	export BIOMBO_PLAYER=~/Code/biombo/biombo-player
+
+	source "/usr/share/nvm/init-nvm.sh"
 fi
 
 PATH=$PATH:~/.gem/ruby/2.3.0/bin
