@@ -73,6 +73,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kergoth/vim-bitbake'
 Plug 'reasonml-editor/vim-reason-plus'
+Plug 'dag/vim-fish'
 
 
 " For vim only
