@@ -71,6 +71,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jxnblk/vim-mdx-js'
+Plug 'kergoth/vim-bitbake'
+Plug 'reasonml-editor/vim-reason-plus'
+
 
 " For vim only
 if !has('nvim')
@@ -297,7 +300,8 @@ let g:LanguageClient_serverCommands = {
 	\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
 	\ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
 	\ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
-	\ 'typescript.tsx': ['/usr/local/bin/typescript-language-server', '--stdio']
+	\ 'typescript.tsx': ['/usr/local/bin/typescript-language-server', '--stdio'],
+	\ 'reason': ['/home/matteus/swap-project/reason-language-server/reason-language-server.exe']
 	\ }
 
 function! LC_maps()
