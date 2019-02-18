@@ -173,7 +173,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 
 
@@ -318,6 +318,7 @@ function! LC_maps()
 		nnoremap <buffer> <silent> <leader>c  :Denite contextMenu<CR>
 		nnoremap <buffer> <silent> <leader>ls :Denite documentSymbol<CR>
 		nnoremap <buffer> <silent> <leader>lr :Denite references<CR>
+		nnoremap <buffer> <silent> <leader><leader> :Denite codeAction<CR>
 	endif
 endfunction
 autocmd FileType * call LC_maps()
