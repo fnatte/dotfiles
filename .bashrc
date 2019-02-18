@@ -38,6 +38,8 @@ export GPG_TTY=`tty`
 
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+
 # Set vcprompt executable path for scm advance info in prompt (demula theme)
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
@@ -75,6 +77,7 @@ fi
 PATH=$PATH:~/.gem/ruby/2.3.0/bin
 PATH=$PATH:~/.config/composer/vendor/bin
 PATH=$PATH:$GOPATH/bin
+PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 PATH="$PATH:$(yarn global bin)"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
