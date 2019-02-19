@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # Path to the bash it configuration
 export BASH_IT="$HOME/bash-it"
 
@@ -40,6 +43,9 @@ export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
+# Ctrl+D three times before shell quits
+export IGNOREEOF=3
+
 # Set vcprompt executable path for scm advance info in prompt (demula theme)
 # https://github.com/xvzf/vcprompt
 #export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
@@ -57,21 +63,22 @@ if [ "$(uname)" == "Darwin" ]; then
 	export PATH=$PATH:/usr/local/texlive/2016basic/bin/x86_64-darwin
 	source "/usr/local/opt/nvm/nvm.sh"
 else
-	setxkbmap -layout 'us,se' -option 'grp:switch'
-	setxkbmap -option caps:escape
-
-	# Make sure we are not in caps
-	CAPS_LOCK_STATE=$(xset q | awk '/Caps Lock/ {print $4}')
-	[ "$CAPS_LOCK_STATE" == "on" ] && xdotool key Caps_Lock
-
 	export LC_ALL=en_US.UTF-8
 	export LANG="$LC_ALL"
 
 	export CHROME_BIN=/usr/bin/chromium
 	export BIOMBO_REPO=~/Code/biombo/repo
-	export BIOMBO_PLAYER=~/Code/biombo/biombo-player
+	# export BIOMBO_PLAYER=~/Code/biombo/biombo-player
+	export BIOMBO_PLAYER=~/Code/biombo/player/packages/biombo-player-app
 
-	source "/usr/share/nvm/init-nvm.sh"
+	if [ -n "$DISPLAY" ]; then
+		setxkbmap -layout 'us,se' -option 'grp:switch'
+		setxkbmap -option caps:escape
+
+		# Make sure we are not in caps
+		CAPS_LOCK_STATE=$(xset q | awk '/Caps Lock/ {print $4}')
+		[ "$CAPS_LOCK_STATE" == "on" ] && xdotool key Caps_Lock
+	fi
 fi
 
 PATH=$PATH:~/.gem/ruby/2.3.0/bin
@@ -81,4 +88,5 @@ PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 PATH="$PATH:$(yarn global bin)"
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+alias sudo='sudo '
 
