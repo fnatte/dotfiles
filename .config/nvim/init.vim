@@ -53,9 +53,7 @@ Plug 'lervag/vimtex'
 " Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
-Plug 'm2mdas/phpcomplete-extended'
 Plug 'StanAngeloff/php.vim'
-Plug 'stephpy/vim-php-cs-fixer'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'vim-scripts/MSIL-Assembly'
@@ -142,24 +140,12 @@ let g:airline_powerline_fonts = 1
 " Fix for indentLine to prevent concealing fuckup
 let g:indentLine_concealcursor=""
 
-" PHP
-let g:phpcomplete_index_composer_command = 'composer'
-let g:php_cs_fixer_config_file = '.php_cs'
-
 
 
 """""""""""""""""""
 " Auto completion "
 """""""""""""""""""
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources = {}
-let g:deoplete#sources.php=['omni', 'buffer', 'member', 'tag', 'file']
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.php = [
-		\'[^. \t0-9]\.\w*',
-		\'[^. \t0-9]\->\w*',
-		\'[^. \t0-9]\::\w*',
-		\]
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " When the <Enter> key is pressed while the popup menu is visible, it only
@@ -172,8 +158,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 
 
@@ -302,7 +286,8 @@ let g:LanguageClient_serverCommands = {
 	\ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
 	\ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
 	\ 'typescript.tsx': ['/usr/local/bin/typescript-language-server', '--stdio'],
-	\ 'reason': ['/home/matteus/swap-project/reason-language-server/reason-language-server.exe']
+	\ 'reason': ['/home/matteus/swap-project/reason-language-server/reason-language-server.exe'],
+	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
 	\ }
 
 function! LC_maps()
