@@ -286,7 +286,7 @@ let g:LanguageClient_serverCommands = {
 	\ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
 	\ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
 	\ 'typescript.tsx': ['/usr/local/bin/typescript-language-server', '--stdio'],
-	\ 'reason': ['/home/matteus/swap-project/reason-language-server/reason-language-server.exe'],
+	\ 'reason': ['/usr/local/bin/reason-language-server'],
 	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
 	\ }
 
