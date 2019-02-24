@@ -39,7 +39,7 @@ Plug 'junegunn/limelight.vim'
 
 " Look
 Plug 'junegunn/seoul256.vim'
-" Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 Plug 'Yggdroot/indentLine' " Show vertical line for tabs
 
 " Language
