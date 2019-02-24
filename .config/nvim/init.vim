@@ -24,7 +24,6 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/denite.nvim'
 Plug 'chemzqm/unite-location'
 Plug 'Shougo/echodoc.vim'
-Plug 'mileszs/ack.vim'
 Plug 'vim-scripts/vis'
 Plug 'romainl/vim-qf'
 Plug 'jamessan/vim-gnupg'
@@ -202,13 +201,6 @@ au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
 " Javascript/Typescript
 " Not sure if this is needed anymore
 " au FileType typescript,javascript set backupcopy=yes
-
-" Ack/ag/rg
-let g:ackprg = 'rg --vimgrep --smart-case'
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
 
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
