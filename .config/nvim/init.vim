@@ -111,7 +111,7 @@ set matchtime=1
 set matchpairs+=<:>
 
 " Show more lines when scrolling
-set scrolloff=3
+set scrolloff=5
 
 " Fix slow syntax highlighting for long lines
 set synmaxcol=180
