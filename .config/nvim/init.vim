@@ -27,7 +27,6 @@ Plug 'Shougo/echodoc.vim'
 Plug 'vim-scripts/vis'
 Plug 'romainl/vim-qf'
 Plug 'jamessan/vim-gnupg'
-Plug 'junegunn/limelight.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier'
@@ -36,6 +35,7 @@ Plug 'prettier/vim-prettier'
 Plug 'ron89/thesaurus_query.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
+Plug 'junegunn/limelight.vim'
 
 " Look
 Plug 'junegunn/seoul256.vim'
@@ -48,10 +48,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 	\ 'do': 'bash install.sh',
 	\ }
 Plug 'lervag/vimtex'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'Quramy/tsuquyomi'
 Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'StanAngeloff/php.vim'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
@@ -198,24 +195,11 @@ au FileType go nmap <leader>e <Plug>(go-rename)
 " Javascript
 au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
 
-" Javascript/Typescript
-" Not sure if this is needed anymore
-" au FileType typescript,javascript set backupcopy=yes
-
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
 
 " Do not conceal markdown
 let g:vim_markdown_conceal = 0
-
-" Typescript (now using LSP)
-" let g:nvim_typescript#signature_complete = 1
-" au FileType typescript,typescript.tsx nmap <buffer> <silent> K :TSDoc<CR>
-" au FileType typescript,typescript.tsx nmap <buffer> <silent> <leader>tdp :TSDefPreview<CR>
-" au FileType typescript,typescript.tsx nmap <buffer> <silent> <leader>ti :TSImport<CR>
-" au FileType typescript,typescript.tsx nmap <buffer> <silent> <leader>tr :TSRename<CR>
-" au FileType typescript,typescript.tsx nmap <buffer> <silent> <c-]> :TSTypeDef<CR>
-" au FileType typescript,typescript.tsx nmap <buffer> <silent> <c-=> :TSDef<CR>
 
 " Latex
 if has('macunix')
@@ -302,10 +286,6 @@ autocmd FileType * call LC_maps()
 
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
 autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal signcolumn=yes
-
-" Alternative language server
-" 'typescript': ['/usr/local/bin/javascript-typescript-stdio', '--enable-jaeger', '-t', '-l', 'test.log'],
-" 'typescript.tsx': ['/usr/local/bin/javascript-typescript-stdio', '--enable-jaeger', '-t', '-l', 'test.log'],
 
 " To enable logging:
 " let $RUST_BACKTRACE = 1
