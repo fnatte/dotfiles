@@ -62,7 +62,7 @@ Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-highlight'
 Plug 'tpope/vim-salve'
 Plug 'pangloss/vim-javascript'
-Plug 'ternjs/tern_for_vim'
+"Plug 'ternjs/tern_for_vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kergoth/vim-bitbake'
@@ -193,7 +193,7 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <leader>e <Plug>(go-rename)
 
 " Javascript
-au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
+"au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
 
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
