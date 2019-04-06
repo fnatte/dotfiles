@@ -5,6 +5,7 @@ end
 set fish_prompt_pwd_dir_length 2
 
 set -xg EDITOR 'nvim'
+set -xg BROWSER 'firefox'
 
 # Set nvim direction (that contains nvm.sh)
 # This is used by nvm omf-plugin
