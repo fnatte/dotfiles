@@ -194,6 +194,7 @@ au FileType go nmap <leader>e <Plug>(go-rename)
 
 " Javascript
 "au FileType javascript nnoremap <silent> <buffer> <C-]> :TernDef<CR>
+au FileType javascript setlocal backupcopy=yes
 
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
