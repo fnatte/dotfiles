@@ -160,7 +160,7 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 """"""""""
 " Denite "
 """"""""""
-call denite#custom#var('file_rec', 'command',
+call denite#custom#var('file/rec', 'command',
 	\ ['rg', '--files', '--color', 'never', '--glob', '!.git'])
 
 " Navigate with jk in insert
@@ -176,7 +176,7 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source('grep', 'converters', ['converter/abbr_word'])
 
-nnoremap <c-p> :Denite file_rec<CR>
+nnoremap <c-p> :Denite file/rec<CR>
 nnoremap <leader>g :Denite grep<CR>
 nnoremap <silent> <leader>ll  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
 
