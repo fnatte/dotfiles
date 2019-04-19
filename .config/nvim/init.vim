@@ -259,11 +259,11 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " Language Server Protocol (LSP) "
 """"""""""""""""""""""""""""""""""
 let g:LanguageClient_serverCommands = {
-	\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-	\ 'javascript.jsx': ['/usr/local/bin/javascript-typescript-stdio'],
-	\ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
-	\ 'typescript.tsx': ['/usr/local/bin/typescript-language-server', '--stdio'],
-	\ 'reason': ['/usr/local/bin/reason-language-server'],
+	\ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
+	\ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
+	\ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
+	\ 'typescript.tsx': ['/usr/bin/typescript-language-server', '--stdio'],
+	\ 'reason': ['/usr/bin/reason-language-server'],
 	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
 	\ }
 
