@@ -258,10 +258,16 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Defx
-map <C-n> :Defx -ignored-files=.*,*.aug,*.fdb_latexmk,*.fls,*.aux,*.cb,*.bib,
-			\*.bbl,*.bcf,*.blg,*.out,*.pdf,*.lof,*.lot,*.toc,*.synctex.gz,
-			\*.run.xml
-			\ -columns=icons:filename:type <CR>
+call defx#custom#option('_', {
+		\ 'ignored_files': '.*,*.aug,*.fdb_latexmk,*.fls,*.aux,*.cb,*.bib,
+			\ \*.bbl,*.bcf,*.blg,*.out,*.pdf,*.lof,*.lot,*.toc,
+			\ *.synctex.gz,\*.run.xml',
+		\ 'columns': 'mark:indent:icons:filename:type'
+		\ })
+nnoremap <C-n> :Defx -listed -resume<CR>
+
+" map <C-n> :Defx -ignored-files=" 			\ -listed -resume
+" 			\ -columns=mark:indent:icons:filename:type <CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
 	" Define mappings
