@@ -1,0 +1,13 @@
+yellow = #c6c64c
+celery = #b3bc57
+green = #57a15d
+sea = #67b69f
+pink = #f8c0c3
+red = #ec6371
+chalky = #f0d09b
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+
+; vim:ft=dosini
