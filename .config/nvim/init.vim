@@ -30,6 +30,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier'
 Plug 'wellle/targets.vim'
+Plug 'gyim/vim-boxdraw'
 
 " File Explorer
 if has('nvim')
@@ -139,6 +140,9 @@ let g:airline_powerline_fonts = 1
 " Fix for indentLine to prevent concealing fuckup
 let g:indentLine_concealcursor=""
 
+" Do not run sleuth for markdown because it's slow somehow
+autocmd Filetype markdown let b:sleuth_automatic = 0
+autocmd Filetype * if &filetype != 'markdown' | let b:sleuth_automatic = 1 | endif
 
 
 """""""""""""""""""
@@ -163,14 +167,28 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 """"""""""
 " Denite "
 """"""""""
+nnoremap <c-p> :Denite -start-filter file/rec<CR>
+nnoremap <leader>g :Denite grep<CR>
+nnoremap <silent> <leader>ll  :<C-u>Denite -auto-resize location_list<CR>
+
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+	nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+	nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+	nnoremap <silent><buffer><expr> <Esc> denite#do_map('quit')
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+	imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)
+	inoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+endfunction
+
+" Ripgrep command on file/rec
 call denite#custom#var('file/rec', 'command',
 	\ ['rg', '--files', '--color', 'never', '--glob', '!.git'])
 
-" Navigate with jk in insert
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-
-" Ag command on grep source
+" Ripgrep command on grep source
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])
@@ -179,9 +197,6 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source('grep', 'converters', ['converter/abbr_word'])
 
-nnoremap <c-p> :Denite file/rec<CR>
-nnoremap <leader>g :Denite grep<CR>
-nnoremap <silent> <leader>ll  :<C-u>Denite -mode=normal -auto-resize location_list<CR>
 
 
 " Thesaurus
@@ -345,6 +360,25 @@ autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal si
 
 " Prettier
 let g:prettier#exec_cmd_async = 1
+
+
+let g:pencil#autoformat_config = {
+		\   'markdown': {
+		\     'black': [
+		\       'htmlH[0-9]',
+		\       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
+		\       'markdown(FencedCodeBlock|InlineCode)',
+		\       'mkd(Code|Rule|Delimiter|Link|ListItem|ListItemLine|IndentCode|Snippet|NonListItem|NonListItemBlock)',
+		\       'mmdTable[A-Za-z0-9]*',
+		\     ],
+		\     'white': [
+		\      'markdown(Code|Link)',
+		\     ],
+		\ }
+	\ }
+
+" Livedown (preview of markdown)
+let g:livedown_autorun = 0
 
 " Auto build spell files
 let s:dirs = split(globpath(&rtp, 'spell'), '\n')
