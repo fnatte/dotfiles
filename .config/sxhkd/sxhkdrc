@@ -16,7 +16,7 @@ super + Escape
 
 # screenshot
 Print
-	maim -s | xclip -selection clipboard -t image/png
+	~/.config/sxhkd/scripts/screenshot.sh
 
 #
 # bspwm hotkeys
