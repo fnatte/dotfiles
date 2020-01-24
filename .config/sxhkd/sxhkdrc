@@ -144,3 +144,7 @@ XF86AudioLowerVolume
 XF86AudioMute
        pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# lock
+super + shift + Escape
+       dm-tool lock
+
