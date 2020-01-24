@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	~/.config/sxhkd/new-termite.sh
+	~/.config/sxhkd/scripts/new-termite.sh
 
 # program launcher
 super + @space
