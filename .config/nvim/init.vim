@@ -41,10 +41,10 @@ else
 endif
 
 " Writing
-Plug 'ron89/thesaurus_query.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/limelight.vim'
+Plug 'ron89/thesaurus_query.vim', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'junegunn/goyo.vim', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'reedes/vim-pencil', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'junegunn/limelight.vim', { 'for': [ 'markdown', 'plaintex' ] }
 
 " Look
 Plug 'junegunn/seoul256.vim'
@@ -56,26 +56,26 @@ Plug 'autozimu/LanguageClient-neovim', {
 	\ 'branch': 'next',
 	\ 'do': 'bash install.sh',
 	\ }
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': [ 'plaintex' ] }
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'StanAngeloff/php.vim'
-Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'vim-scripts/MSIL-Assembly'
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'shime/vim-livedown'
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-clojure-highlight'
-Plug 'tpope/vim-salve'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'shime/vim-livedown', { 'for': 'markdown' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kergoth/vim-bitbake'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'dag/vim-fish'
+Plug 'reasonml-editor/vim-reason-plus', { 'for': 'clojure' }
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 
 " For vim only
