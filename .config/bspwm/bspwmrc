@@ -1,5 +1,9 @@
 #! /bin/sh
 
+setxkbmap -layout 'se,us' \
+	-option 'grp:alt_caps_toggle' \
+	-option 'caps:escape'
+
 $HOME/.config/polybar/launch.sh
 $HOME/.config/bspwm/wallpaper.sh
 sxhkd &
