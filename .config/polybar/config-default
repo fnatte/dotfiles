@@ -25,6 +25,9 @@ inherit = base/module/bspwm
 [module/mpd]
 inherit = base/module/mpd
 
+[module/battery]
+inherit = base/module/battery
+
 [module/cpu]
 inherit = base/module/cpu
 
