@@ -365,20 +365,21 @@ autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal si
 let g:prettier#exec_cmd_async = 1
 
 
-let g:pencil#autoformat_config = {
-		\   'markdown': {
-		\     'black': [
-		\       'htmlH[0-9]',
-		\       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
-		\       'markdown(FencedCodeBlock|InlineCode)',
-		\       'mkd(Code|Rule|Delimiter|Link|ListItem|ListItemLine|IndentCode|Snippet|NonListItem|NonListItemBlock)',
-		\       'mmdTable[A-Za-z0-9]*',
-		\     ],
-		\     'white': [
-		\      'markdown(Code|Link)',
-		\     ],
-		\ }
-	\ }
+" let g:pencil#autoformat_config = {
+" 		\   'markdown': {
+" 		\     'black': [
+" 		\       'htmlH[0-9]',
+" 		\       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
+" 		\       'markdown(FencedCodeBlock|InlineCode)',
+" 		\       'mkd(Code|Rule|Delimiter|Link|ListItem|ListItemLine|IndentCode|Snippet|NonListItem|NonListItemBlock)',
+" 		\       'mmdTable[A-Za-z0-9]*',
+" 		\     ],
+" 		\     'white': [
+" 		\      'markdown(Code|Link)',
+" 		\     ],
+" 		\ }
+" 	\ }
+
 
 " Livedown (preview of markdown)
 let g:livedown_autorun = 0
