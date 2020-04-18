@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	~/.config/sxhkd/new-termite.sh
+	~/.config/sxhkd/scripts/new-termite.sh
 
 # program launcher
 super + @space
@@ -16,7 +16,7 @@ super + Escape
 
 # screenshot
 Print
-	maim -s | xclip -selection clipboard -t image/png
+	~/.config/sxhkd/scripts/screenshot.sh
 
 #
 # bspwm hotkeys
@@ -88,6 +88,10 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+# rotate desktop
+super + r
+       bspc node @/ -R 90
+
 #
 # preselect
 #
@@ -123,3 +127,24 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# media keys
+#
+
+# increase volume
+XF86AudioRaiseVolume
+       pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# decrease volume
+XF86AudioLowerVolume
+       pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# mute
+XF86AudioMute
+       pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# lock
+super + shift + Escape
+       dm-tool lock
+

@@ -3,8 +3,7 @@
 " * tomtom/tcomment_vim
 " * weierophinney/argumentrewrap
 
-" Auto reload vim config
-autocmd! BufWritePost *.vim source $MYVIMRC
+" Plugins {{{
 
 function! DoRemote(arg)
 	UpdateRemotePlugins
@@ -41,10 +40,10 @@ else
 endif
 
 " Writing
-Plug 'ron89/thesaurus_query.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'reedes/vim-pencil'
-Plug 'junegunn/limelight.vim'
+Plug 'ron89/thesaurus_query.vim', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'junegunn/goyo.vim', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'reedes/vim-pencil', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'junegunn/limelight.vim', { 'for': [ 'markdown', 'plaintex' ] }
 
 " Look
 Plug 'junegunn/seoul256.vim'
@@ -56,26 +55,26 @@ Plug 'autozimu/LanguageClient-neovim', {
 	\ 'branch': 'next',
 	\ 'do': 'bash install.sh',
 	\ }
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': [ 'plaintex' ] }
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'StanAngeloff/php.vim'
-Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'vim-scripts/MSIL-Assembly'
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'shime/vim-livedown'
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-clojure-highlight'
-Plug 'tpope/vim-salve'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'shime/vim-livedown', { 'for': 'markdown' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight', { 'for': 'clojure' }
+Plug 'tpope/vim-salve', { 'for': 'clojure' }
 Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jxnblk/vim-mdx-js'
 Plug 'kergoth/vim-bitbake'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'dag/vim-fish'
+Plug 'reasonml-editor/vim-reason-plus', { 'for': 'clojure' }
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 
 " For vim only
@@ -88,6 +87,9 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
+" }}}
+
+" General {{{
 
 colo seoul256
 let mapleader = ','
@@ -98,6 +100,9 @@ set tabstop=4 shiftwidth=4
 set number
 set hidden " Required by LanguageClient-neovim
 set timeoutlen=400
+
+" Disable default plugins
+let g:loaded_netrwPlugin       = 1
 
 " Using echodoc, we need in increased 'cmdheight' value.
 set cmdheight=2
@@ -145,10 +150,10 @@ let g:indentLine_concealcursor=""
 autocmd Filetype markdown let b:sleuth_automatic = 0
 autocmd Filetype * if &filetype != 'markdown' | let b:sleuth_automatic = 1 | endif
 
+" }}}
 
-"""""""""""""""""""
-" Auto completion "
-"""""""""""""""""""
+" Auto Completion {{{
+
 let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -163,11 +168,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
+" }}}
 
+" Denite {{{
 
-""""""""""
-" Denite "
-""""""""""
 nnoremap <c-p> :Denite -start-filter file/rec<CR>
 nnoremap <leader>g :Denite grep<CR>
 nnoremap <silent> <leader>ll  :<C-u>Denite -auto-resize location_list<CR>
@@ -198,21 +202,59 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source('grep', 'converters', ['converter/abbr_word'])
 
+" }}}
 
+" Language Server Protocol (LSP) {{{
 
-" Thesaurus
-nnoremap <Leader>tcw :ThesaurusQueryReplaceCurrentWord<CR>
+let g:LanguageClient_serverCommands = {
+	\ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
+	\ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
+	\ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
+	\ 'typescript.tsx': ['/usr/bin/typescript-language-server', '--stdio'],
+	\ 'reason': ['/usr/bin/reason-language-server'],
+	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
+	\ }
 
-" Go
+function! LC_maps()
+	if has_key(g:LanguageClient_serverCommands, &filetype)
+		nnoremap <buffer> <slient> <F5>        :call LanguageClient_contextMenu()<CR>
+		nnoremap <buffer> <silent> K           :call LanguageClient#textDocument_hover()<CR>
+		nnoremap <buffer> <silent> gdp         :call LanguageClient#textDocument_typeDefinition()<CR>
+		nnoremap <buffer> <silent> gd          :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <buffer> <silent> <c-]>       :call LanguageClient#textDocument_definition()<CR>
+		nnoremap <buffer> <silent> <F2>        :call LanguageClient#textDocument_rename()<CR>
+		nnoremap <buffer> <silent> <leader>r   :call LanguageClient#textDocument_rename()<CR>
+		nnoremap <buffer> <silent> <leader>f   :call LanguageClient#textDocument_formatting()<CR>
+
+		nnoremap <buffer> <silent> <leader>c  :Denite contextMenu<CR>
+		nnoremap <buffer> <silent> <leader>ls :Denite documentSymbol<CR>
+		nnoremap <buffer> <silent> <leader>lr :Denite references<CR>
+		nnoremap <buffer> <silent> <leader><leader> :Denite codeAction<CR>
+	endif
+endfunction
+autocmd FileType * call LC_maps()
+
+" }}}
+
+" Language Specific {{{
+
+" Go {{{
 let g:go_fmt_command = "goimports"
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <leader>e <Plug>(go-rename)
+" }}}
 
-" Javascript
+" JavaScript & TypeCcript {{{
 au FileType javascript setlocal backupcopy=yes
+
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal signcolumn=yes
+" }}}
+
+" JSON {{{
 
 " Do not conceal JSON
 let g:vim_json_syntax_conceal = 0
@@ -220,7 +262,9 @@ let g:vim_json_syntax_conceal = 0
 " Do not conceal markdown
 let g:vim_markdown_conceal = 0
 
-" Latex
+" }}}
+
+" Latex {{{
 if has('macunix')
 	let g:vimtex_quickfix_enabled = 0
 	let g:vimtex_quickfix_mode = 0 "quickfix window not opened automatically
@@ -252,7 +296,11 @@ else
 	let g:vimtex_view_method = 'zathura'
 	let g:vimtex_compiler_progname = 'nvr'
 endif
+" }}}
 
+" }}}
+
+" Writing {{{
 
 function! s:goyo_enter()
 	set noshowcmd
@@ -273,7 +321,28 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-" Defx
+let g:pencil#autoformat_config = {
+		\   'markdown': {
+		\     'black': [
+		\       'htmlH[0-9]',
+		\       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
+		\       'markdown(FencedCodeBlock|InlineCode)',
+		\       'mkd(Code|Rule|Delimiter|Link|ListItem|ListItemLine|IndentCode|Snippet|NonListItem|NonListItemBlock)',
+		\       'mmdTable[A-Za-z0-9]*',
+		\     ],
+		\     'white': [
+		\      'markdown(Code|Link)',
+		\     ],
+		\ }
+	\ }
+
+" Livedown (preview of markdown)
+let g:livedown_autorun = 0
+
+" }}}
+
+" Defx {{{
+
 call defx#custom#option('_', {
 		\ 'ignored_files': '.*,*.aug,*.fdb_latexmk,*.fls,*.aux,*.cb,*.bib,
 			\ \*.bbl,*.bcf,*.blg,*.out,*.pdf,*.lof,*.lot,*.toc,
@@ -321,68 +390,9 @@ function! s:defx_my_settings() abort
 	nnoremap <silent><buffer><expr> cd defx#do_action('change_vim_cwd')
 endfunction
 
-""""""""""""""""""""""""""""""""""
-" Language Server Protocol (LSP) "
-""""""""""""""""""""""""""""""""""
-let g:LanguageClient_serverCommands = {
-	\ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
-	\ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
-	\ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
-	\ 'typescript.tsx': ['/usr/bin/typescript-language-server', '--stdio'],
-	\ 'reason': ['/usr/bin/reason-language-server'],
-	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
-	\ }
+" }}}
 
-function! LC_maps()
-	if has_key(g:LanguageClient_serverCommands, &filetype)
-		nnoremap <buffer> <slient> <F5>        :call LanguageClient_contextMenu()<CR>
-		nnoremap <buffer> <silent> K           :call LanguageClient#textDocument_hover()<CR>
-		nnoremap <buffer> <silent> gdp         :call LanguageClient#textDocument_typeDefinition()<CR>
-		nnoremap <buffer> <silent> gd          :call LanguageClient#textDocument_definition()<CR>
-		nnoremap <buffer> <silent> <c-]>       :call LanguageClient#textDocument_definition()<CR>
-		nnoremap <buffer> <silent> <F2>        :call LanguageClient#textDocument_rename()<CR>
-		nnoremap <buffer> <silent> <leader>r   :call LanguageClient#textDocument_rename()<CR>
-		nnoremap <buffer> <silent> <leader>f   :call LanguageClient#textDocument_formatting()<CR>
-
-		nnoremap <buffer> <silent> <leader>c  :Denite contextMenu<CR>
-		nnoremap <buffer> <silent> <leader>ls :Denite documentSymbol<CR>
-		nnoremap <buffer> <silent> <leader>lr :Denite references<CR>
-		nnoremap <buffer> <silent> <leader><leader> :Denite codeAction<CR>
-	endif
-endfunction
-autocmd FileType * call LC_maps()
-
-" Always draw sign column. Prevent buffer moving when adding/deleting sign.
-autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal signcolumn=yes
-
-" To enable logging:
-" let $RUST_BACKTRACE = 1
-" let g:LanguageClient_loggingLevel = 'INFO'
-" let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
-" let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
-
-" Prettier
-let g:prettier#exec_cmd_async = 1
-
-
-" let g:pencil#autoformat_config = {
-" 		\   'markdown': {
-" 		\     'black': [
-" 		\       'htmlH[0-9]',
-" 		\       'markdown(Code|H[0-9]|Url|IdDeclaration|Link|Rule|Highlight[A-Za-z0-9]+)',
-" 		\       'markdown(FencedCodeBlock|InlineCode)',
-" 		\       'mkd(Code|Rule|Delimiter|Link|ListItem|ListItemLine|IndentCode|Snippet|NonListItem|NonListItemBlock)',
-" 		\       'mmdTable[A-Za-z0-9]*',
-" 		\     ],
-" 		\     'white': [
-" 		\      'markdown(Code|Link)',
-" 		\     ],
-" 		\ }
-" 	\ }
-
-
-" Livedown (preview of markdown)
-let g:livedown_autorun = 0
+" Spelling {{{
 
 " Auto build spell files
 let s:dirs = split(globpath(&rtp, 'spell'), '\n')
@@ -397,9 +407,21 @@ for s:dir in s:dirs
 	endfor
 endfor
 
-let $NVIM_NODE_LOG_FILE='nvim-node.log'
-let $NVIM_NODE_LOG_LEVEL='warn'
+" }}}
 
-" Disable default plugins
-let g:loaded_netrwPlugin       = 1
+" Others {{{
 
+" Prettier
+let g:prettier#exec_cmd_async = 1
+
+" Thesaurus
+nnoremap <Leader>tcw :ThesaurusQueryReplaceCurrentWord<CR>
+
+" }}}
+
+" VIMRC {{{
+nnoremap <leader>ev :e $MYVIMRC<CR>
+nnoremap <leader>sv :source %MYVIMRC <bar> :doautocmd BufRead<CR>
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
