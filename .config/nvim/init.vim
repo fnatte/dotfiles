@@ -97,6 +97,7 @@ set list lcs=tab:¦\ " Comment to prevent removal of last space
 set tabstop=4 shiftwidth=4
 set number
 set hidden " Required by LanguageClient-neovim
+set timeoutlen=400
 
 " Using echodoc, we need in increased 'cmdheight' value.
 set cmdheight=2
