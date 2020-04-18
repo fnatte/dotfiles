@@ -342,6 +342,7 @@ function! LC_maps()
 		nnoremap <buffer> <silent> <c-]>       :call LanguageClient#textDocument_definition()<CR>
 		nnoremap <buffer> <silent> <F2>        :call LanguageClient#textDocument_rename()<CR>
 		nnoremap <buffer> <silent> <leader>r   :call LanguageClient#textDocument_rename()<CR>
+		nnoremap <buffer> <silent> <leader>f   :call LanguageClient#textDocument_formatting()<CR>
 
 		nnoremap <buffer> <silent> <leader>c  :Denite contextMenu<CR>
 		nnoremap <buffer> <silent> <leader>ls :Denite documentSymbol<CR>
