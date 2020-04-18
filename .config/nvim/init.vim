@@ -280,6 +280,7 @@ call defx#custom#option('_', {
 			\ *.synctex.gz,\*.run.xml',
 		\ 'columns': 'mark:indent:icons:filename:type'
 		\ })
+nnoremap <C-n><C-n> :Defx -search=`expand('%:p')` -listed -resume<CR>
 nnoremap <C-n> :Defx -listed -resume<CR>
 
 " map <C-n> :Defx -ignored-files=" 			\ -listed -resume
