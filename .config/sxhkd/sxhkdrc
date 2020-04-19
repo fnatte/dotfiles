@@ -90,7 +90,7 @@ super + {_,shift + }{1-9,0}
 
 # rotate desktop
 super + r
-       bspc node @/ -R 90
+	bspc node @/ -R 90
 
 #
 # preselect
@@ -134,17 +134,17 @@ super + {Left,Down,Up,Right}
 
 # increase volume
 XF86AudioRaiseVolume
-       pactl set-sink-volume @DEFAULT_SINK@ +5%
+	pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 # decrease volume
 XF86AudioLowerVolume
-       pactl set-sink-volume @DEFAULT_SINK@ -5%
+	pactl set-sink-volume @DEFAULT_SINK@ -5%
 
 # mute
 XF86AudioMute
-       pactl set-sink-mute @DEFAULT_SINK@ toggle
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # lock
 super + shift + Escape
-       dm-tool lock
+	dm-tool lock
 
