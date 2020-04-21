@@ -1,3 +1,3 @@
 #!/bin/bash
-termite -d "$(~/.config/sxhkd/cwd.sh)"
+termite -d "$(~/.config/sxhkd/scripts/get-cwd.sh)"
 
