@@ -19,6 +19,10 @@ set -xg NVM_DIR '/usr/share/nvm'
 set -gx PATH $PATH (yarn bin)
 set -gx PATH $PATH $GOPATH/bin
 
+# Flutter
+set -gx FLUTTER_HOME /opt/flutter
+set -gx PATH $PATH $FLUTTER_HOME/bin
+
 bind \cd delete-char
 
 alias vim='nvim'

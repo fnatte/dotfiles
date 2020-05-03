@@ -75,6 +75,7 @@ Plug 'jxnblk/vim-mdx-js'
 Plug 'kergoth/vim-bitbake'
 Plug 'reasonml-editor/vim-reason-plus', { 'for': 'clojure' }
 Plug 'dag/vim-fish', { 'for': 'fish' }
+Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 
 
 " For vim only
@@ -211,6 +212,7 @@ let g:LanguageClient_serverCommands = {
 	\ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
 	\ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
 	\ 'typescript.tsx': ['/usr/bin/typescript-language-server', '--stdio'],
+	\ 'dart': ['$FLUTTER_HOME/bin/cache/dart-sdk/bin/dart', '$FLUTTER_HOME/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
 	\ 'reason': ['/usr/bin/reason-language-server'],
 	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
 	\ }
