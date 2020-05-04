@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+CONFIG_PATH=${XDG_CONFIG_HOME:-$HOME/.config}
+: ${TMUX_PLUGIN_MANAGER_PATH:=$CONFIG_PATH/tmux/plugins}
+TPM_PATH=$TMUX_PLUGIN_MANAGER_PATH/tpm
+TPM_REPO=https://github.com/tmux-plugins/tpm
+
+export TMUX_PLUGIN_MANAGER_PATH
+
+if [ ! -d $TPM_PATH ]; then
+   git clone $TPM_REPO $TPM_PATH && $TPM_PATH/bin/install_plugins
+fi
+
