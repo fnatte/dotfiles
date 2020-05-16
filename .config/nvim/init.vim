@@ -214,7 +214,8 @@ let g:LanguageClient_serverCommands = {
 	\ 'typescript.tsx': ['/usr/bin/typescript-language-server', '--stdio'],
 	\ 'dart': ['$FLUTTER_HOME/bin/cache/dart-sdk/bin/dart', '$FLUTTER_HOME/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
 	\ 'reason': ['/usr/bin/reason-language-server'],
-	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php']
+	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
+	\ 'python': ['mspyls']
 	\ }
 
 function! LC_maps()
