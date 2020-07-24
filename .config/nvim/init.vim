@@ -76,6 +76,7 @@ Plug 'kergoth/vim-bitbake'
 Plug 'reasonml-editor/vim-reason-plus', { 'for': 'clojure' }
 Plug 'dag/vim-fish', { 'for': 'fish' }
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 
 " For vim only
