@@ -8,7 +8,11 @@ super + Return
 
 # program launcher
 super + @space
-	rofi -show run -modi run
+	rofi -show run -modi run,window
+
+# calc
+super + shift + @c
+	rofi -show calc -modi calc -no-show-match -no-sort
 
 # make sxhkd reload its configuration files:
 super + Escape
