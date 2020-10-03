@@ -16,6 +16,7 @@ set -xg NVM_DIR '/usr/share/nvm'
 # set -xg NVIM_LISTEN_ADDRESS '/tmp/nvimsocket'
 
 # Append PATH
+set -gx PATH $PATH $HOME/bin
 set -gx PATH $PATH (yarn bin)
 set -gx PATH $PATH $GOPATH/bin
 
