@@ -1,5 +1,7 @@
 #! /bin/sh
 
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
 setxkbmap -layout 'se,us' \
 	-option 'grp:alt_caps_toggle' \
 	-option 'caps:escape'
