@@ -73,6 +73,7 @@ Plug 'reasonml-editor/vim-reason-plus', { 'for': 'clojure' }
 Plug 'dag/vim-fish', { 'for': 'fish' }
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'andys8/vim-elm-syntax'
 
 
 " For vim only
@@ -235,11 +236,12 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <leader>e <Plug>(go-rename)
 " }}}
 
-" JavaScript & TypeCcript {{{
+" JavaScript & TypeScript & Elm {{{
 au FileType javascript setlocal backupcopy=yes
+au FileType elm setlocal backupcopy=yes
 
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
-autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal signcolumn=yes
+autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx,typescriptreact setlocal signcolumn=yes
 " }}}
 
 " JSON {{{
