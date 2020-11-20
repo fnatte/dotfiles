@@ -17,7 +17,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/denite.nvim'
 Plug 'chemzqm/unite-location'
@@ -51,10 +50,7 @@ Plug 'bling/vim-airline'
 Plug 'Yggdroot/indentLine' " Show vertical line for tabs
 
 " Language
-Plug 'autozimu/LanguageClient-neovim', {
-	\ 'branch': 'next',
-	\ 'do': 'bash install.sh',
-	\ }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex', { 'for': [ 'plaintex' ] }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
@@ -102,6 +98,7 @@ set tabstop=4 shiftwidth=4
 set number
 set hidden " Required by LanguageClient-neovim
 set timeoutlen=400
+set updatetime=300
 
 " Disable default plugins
 let g:loaded_netrwPlugin       = 1
@@ -156,7 +153,6 @@ autocmd Filetype * if &filetype != 'markdown' | let b:sleuth_automatic = 1 | end
 
 " Auto Completion {{{
 
-let g:deoplete#enable_at_startup = 1
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " When the <Enter> key is pressed while the popup menu is visible, it only
@@ -206,37 +202,25 @@ call denite#custom#source('grep', 'converters', ['converter/abbr_word'])
 
 " }}}
 
-" Language Server Protocol (LSP) {{{
+" Coc {{{
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>r <Plug>(coc-rename)
+nmap <silent> <leader>f <Plug>(coc-format)
+nmap <leader><leader>  <Plug>(coc-codeaction-line)
 
-let g:LanguageClient_serverCommands = {
-	\ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
-	\ 'javascript.jsx': ['/usr/bin/javascript-typescript-stdio'],
-	\ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
-	\ 'typescript.tsx': ['/usr/bin/typescript-language-server', '--stdio'],
-	\ 'dart': ['$FLUTTER_HOME/bin/cache/dart-sdk/bin/dart', '$FLUTTER_HOME/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot', '--lsp'],
-	\ 'reason': ['/usr/bin/reason-language-server'],
-	\ 'php': ['php', '/home/matteus/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php'],
-	\ 'python': ['mspyls']
-	\ }
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! LC_maps()
-	if has_key(g:LanguageClient_serverCommands, &filetype)
-		nnoremap <buffer> <slient> <F5>        :call LanguageClient_contextMenu()<CR>
-		nnoremap <buffer> <silent> K           :call LanguageClient#textDocument_hover()<CR>
-		nnoremap <buffer> <silent> gdp         :call LanguageClient#textDocument_typeDefinition()<CR>
-		nnoremap <buffer> <silent> gd          :call LanguageClient#textDocument_definition()<CR>
-		nnoremap <buffer> <silent> <c-]>       :call LanguageClient#textDocument_definition()<CR>
-		nnoremap <buffer> <silent> <F2>        :call LanguageClient#textDocument_rename()<CR>
-		nnoremap <buffer> <silent> <leader>r   :call LanguageClient#textDocument_rename()<CR>
-		nnoremap <buffer> <silent> <leader>f   :call LanguageClient#textDocument_formatting()<CR>
-
-		nnoremap <buffer> <silent> <leader>c  :Denite contextMenu<CR>
-		nnoremap <buffer> <silent> <leader>ls :Denite documentSymbol<CR>
-		nnoremap <buffer> <silent> <leader>lr :Denite references<CR>
-		nnoremap <buffer> <silent> <leader><leader> :Denite codeAction<CR>
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocActionAsync('doHover')
 	endif
 endfunction
-autocmd FileType * call LC_maps()
 
 " }}}
 
