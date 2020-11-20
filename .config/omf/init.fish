@@ -23,6 +23,7 @@ set -gx PATH $PATH $GOPATH/bin
 # Flutter
 set -gx FLUTTER_HOME /opt/flutter
 set -gx PATH $PATH $FLUTTER_HOME/bin
+set -gx PATH $PATH /opt/flutter/.pub-cache/bin
 
 bind \cd delete-char
 
