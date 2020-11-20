@@ -400,4 +400,4 @@ nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :source %MYVIMRC <bar> :doautocmd BufRead<CR>
 " }}}
 
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevel=0:tabstop=4
