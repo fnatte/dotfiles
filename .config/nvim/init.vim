@@ -39,10 +39,10 @@ else
 endif
 
 " Writing
-Plug 'ron89/thesaurus_query.vim', { 'for': [ 'markdown', 'plaintex' ] }
-Plug 'junegunn/goyo.vim', { 'for': [ 'markdown', 'plaintex' ] }
-Plug 'reedes/vim-pencil', { 'for': [ 'markdown', 'plaintex' ] }
-Plug 'junegunn/limelight.vim', { 'for': [ 'markdown', 'plaintex' ] }
+Plug 'ron89/thesaurus_query.vim', { 'for': [ 'markdown', 'plaintex', 'tex' ] }
+Plug 'junegunn/goyo.vim', { 'for': [ 'markdown', 'plaintex', 'tex' ] }
+Plug 'reedes/vim-pencil', { 'for': [ 'markdown', 'plaintex', 'tex' ] }
+Plug 'junegunn/limelight.vim', { 'for': [ 'markdown', 'plaintex', 'tex' ] }
 
 " Look
 Plug 'junegunn/seoul256.vim'
@@ -51,7 +51,7 @@ Plug 'Yggdroot/indentLine' " Show vertical line for tabs
 
 " Language
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lervag/vimtex', { 'for': [ 'plaintex' ] }
+Plug 'lervag/vimtex', { 'for': [ 'plaintex', 'tex' ] }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'elzr/vim-json', { 'for': 'json' }
