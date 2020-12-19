@@ -54,6 +54,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex', { 'for': [ 'plaintex', 'tex' ] }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+Plug 'phpactor/phpactor', {'for': 'php', 'branch': 'develop', 'do': 'composer install --no-dev -o'}
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'vim-scripts/MSIL-Assembly'
@@ -286,6 +287,12 @@ else
 	let g:vimtex_view_method = 'zathura'
 	let g:vimtex_compiler_progname = 'nvr'
 endif
+" }}}
+
+" PHP {{{
+
+let g:phpactorbinpath = "/home/matteus/.config/nvim/plugged/phpactor/bin/phpactor"
+
 " }}}
 
 " }}}
