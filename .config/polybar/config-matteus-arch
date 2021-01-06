@@ -1,4 +1,3 @@
-[root]
 include-file = /home/matteus/.config/polybar/config-base
 
 [colors]
