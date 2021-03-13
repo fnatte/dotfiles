@@ -29,6 +29,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier'
 Plug 'wellle/targets.vim'
 Plug 'gyim/vim-boxdraw'
+Plug 'arthurxavierx/vim-caser'
 
 " File Explorer
 if has('nvim')
@@ -240,6 +241,8 @@ au FileType go nmap <leader>r <Plug>(go-rename)
 " JavaScript & TypeScript & Elm {{{
 au FileType javascript setlocal backupcopy=yes
 au FileType elm setlocal backupcopy=yes
+au FileType typescript setlocal backupcopy=yes
+au FileType typescriptreact setlocal backupcopy=yes
 
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
 autocmd FileType javascript,javascript.jsx,typescript,typescript.tsx,typescriptreact setlocal signcolumn=yes
@@ -252,6 +255,7 @@ let g:vim_json_syntax_conceal = 0
 
 " Do not conceal markdown
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 " }}}
 
