@@ -4,10 +4,8 @@ Description=Start tmux in detached session
 [Service]
 Type=forking
 ExecStart=/usr/bin/tmux new-session -s %u -d
-ExecStop=%h/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
-ExecStop=/usr/bin/tmux kill-server
+ExecStop=/usr/bin/tmux kill-server -t %u
 KillMode=none
-# ExecStop=/usr/bin/tmux kill-session -t %u
 RestartSec=2
 
 
