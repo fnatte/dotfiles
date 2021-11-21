@@ -20,6 +20,7 @@ set -gx PATH $PATH $HOME/bin
 type -q yarn && set -gx PATH $PATH (yarn bin)
 type -q go && set -gx PATH $PATH (go env GOPATH)/bin
 type -q composer && set -gx PATH $PATH (composer global config bin-dir --absolute --quiet)
+type -qf /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
 
 # Flutter
 set -gx FLUTTER_HOME /opt/flutter
