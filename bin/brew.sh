@@ -15,4 +15,4 @@ brew install neovim
 brew install node
 brew install go
 brew install --cask docker
-brew install docker-compose
+
