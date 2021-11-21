@@ -17,9 +17,9 @@ set -xg NVM_DIR '/usr/share/nvm'
 
 # Append PATH
 set -gx PATH $PATH $HOME/bin
-set -gx PATH $PATH (yarn bin)
-set -gx PATH $PATH $GOPATH/bin
-set -gx PATH $PATH (composer global config bin-dir --absolute)
+type -q yarn && set -gx PATH $PATH (yarn bin)
+type -q go && set -gx PATH $PATH (go env GOPATH)/bin
+type -q composer && set -gx PATH $PATH (composer global config bin-dir --absolute)
 
 # Flutter
 set -gx FLUTTER_HOME /opt/flutter
