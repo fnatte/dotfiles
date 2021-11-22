@@ -9,6 +9,7 @@ brew install --cask font-fantasque-sans-mono
 
 # Shell
 brew install fish
+brew install starship
 
 brew install pass
 brew install neovim
