@@ -12,6 +12,7 @@ $HOME/.config/bspwm/wallpaper.sh
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x redshift > /dev/null || redshift &
+tmux has-session -t $USER > /dev/null || tmux new-session -s $USER -d
 
 xset r rate 200 30
 
