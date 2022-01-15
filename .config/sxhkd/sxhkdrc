@@ -12,7 +12,7 @@ super + @space
 
 # calc
 super + shift + @c
-	rofi -show calc -modi calc -no-show-match -no-sort
+	rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '\{result\}' | xclip -selection clipboard"
 
 # make sxhkd reload its configuration files:
 super + Escape
