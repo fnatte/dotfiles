@@ -1,6 +1,7 @@
 #! /bin/sh
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export SXHKD_SHELL=/bin/sh
 
 setxkbmap -layout 'se,us' \
 	-option 'grp:alt_caps_toggle' \
