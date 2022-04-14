@@ -46,4 +46,4 @@ vim.opt.showmode = false
 -- Set fold method to use tree sitter expressions
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
