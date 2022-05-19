@@ -10,5 +10,5 @@ vim.cmd([[
 ]])
 
 -- Make double-<Esc> clear search highlights and close preview window
-vim.api.nvim_set_keymap('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR><Esc>:pc<CR>',
+vim.api.nvim_set_keymap('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR><Esc>:pc<CR>:ccl<CR>',
   { noremap = true, silent = true })
