@@ -1,9 +1,11 @@
 -- Treesitter
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "bash", "c", "cmake", "cpp", "css", "dart",
-    "dockerfile", "fish", "go", "gomod", "gowork", "html",
-    "javascript", "json", "latex", "lua", "make", "php", "python",
-    "rust", "typescript", "vim", "yaml"
+  ensure_installed = { "bash", "c", "c_sharp", "cmake", "cpp", "css", "dart",
+    "dockerfile", "fish", "go", "gomod", "gowork", "graphql", "html",
+    "java", "javascript", "jsdoc", "json", "json5", "jsonc", "kotlin",
+    "latex", "lua", "make", "ninja", "perl", "php", "python", "regex",
+    "ruby", "rust", "scala", "scss", "svelte", "toml", "tsx", "typescript",
+    "vim", "vue", "yaml"
     },
   highlight = {
     enable = true,
