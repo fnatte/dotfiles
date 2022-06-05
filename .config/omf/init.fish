@@ -22,10 +22,17 @@ type -q go && set -gx PATH $PATH (go env GOPATH)/bin
 type -q composer && set -gx PATH $PATH (composer global config bin-dir --absolute --quiet)
 type -qf /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
 
+# Android
+set -gx ANDROID_HOME /opt/android-sdk
+set -gx PATH $PATH $ANDROID_HOME/tools/bin
+set -gx PATH $PATH $ANDROID_HOME/platform-tools
+set -gx PATH $PATH $ANDROID_HOME/cmdline-tools/latest/bin
+
 # Flutter
 set -gx FLUTTER_HOME /opt/flutter
 set -gx PATH $PATH $FLUTTER_HOME/bin
 set -gx PATH $PATH /opt/flutter/.pub-cache/bin
+
 
 bind \cd delete-char
 
