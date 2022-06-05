@@ -10,4 +10,5 @@ require("plugins.telescope")
 require("plugins.lightline")
 require("plugins.gitsigns")
 require("plugins.nvim-tree")
+require("plugins.null-ls")
 
