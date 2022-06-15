@@ -12,13 +12,13 @@ vim.opt.mouse = 'a'
 vim.opt.termguicolors = true
 vim.opt.shell = '/bin/bash' -- nvim-tree.lua has issues with fish shell
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.conceallevel = 0
 
 -- Disable default plugins
 vim.g.loaded_netrwPlugin = 1 
 
 -- Show vertical line for tabs
 vim.opt.list = true
-vim.opt.lcs = "tab:¦ "
 
 -- Highlight current line in current buffer
 vim.opt.cursorline = true

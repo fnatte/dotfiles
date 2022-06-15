@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
   -- Look
   use 'junegunn/seoul256.vim'
   use 'itchyny/lightline.vim'
-  use 'Yggdroot/indentLine' -- Show vertical line for space indention
+  use "lukas-reineke/indent-blankline.nvim" -- Show vertical line for indention
 
   -- File Explorer
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
