@@ -17,6 +17,12 @@ type -q go && set -gx PATH $PATH (go env GOPATH)/bin
 type -q composer && set -gx PATH $PATH (composer global config bin-dir --absolute --quiet)
 type -qf /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
 
+# GCloud
+set GCLOUD_PATH (type -q gcloud && gcloud info --format="value(installation.sdk_root)")
+if test -n "$GCLOUD_PATH"
+  source "$GCLOUD_PATH/path.fish.inc"
+end
+
 # Flutter
 set -gx FLUTTER_HOME /opt/flutter
 set -gx PATH $PATH $FLUTTER_HOME/bin
