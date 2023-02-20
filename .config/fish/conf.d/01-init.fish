@@ -28,6 +28,9 @@ set -gx FLUTTER_HOME /opt/flutter
 set -gx PATH $PATH $FLUTTER_HOME/bin
 set -gx PATH $PATH /opt/flutter/.pub-cache/bin
 
+# Use the ssh agent socket started by systemd (.config/systemd/user/ssh-agent.service)
+set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+
 bind \cd delete-char
 
 alias vim='nvim'
