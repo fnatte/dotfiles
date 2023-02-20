@@ -34,13 +34,29 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_lspconfig').update_capabilities(capabilities)
 
 -- Enable the following language servers.
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'phpactor' }
+local servers = { 'rust_analyzer', 'pyright', 'gopls', 'phpactor' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+lspconfig.tsserver.setup{
+  root_dir = lspconfig.util.root_pattern("tsconfig.json"),
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+lspconfig.denols.setup {
+  root_dir = lspconfig.util.root_pattern("deno.json"),
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+lspconfig.clangd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "c", "cpp", "objc", "objcpp" }
+}
 
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt = 'menuone,noselect'
