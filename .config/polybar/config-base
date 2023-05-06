@@ -34,9 +34,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Fantasque Sans Mono Nerd Font:size=13;3"
-font-1 = "Fantasque Sans Mono Nerd Font:size=8;0"
-font-2 = "Fantasque Sans Mono Nerd Font:bold;size=13;3"
+font-0 = "Fantasque Sans M Nerd Font:size=13;3"
+font-1 = "Fantasque Sans M Nerd Font:size=8;0"
+font-2 = "Fantasque Sans M Nerd Font:bold;size=13;3"
 font-3 = "siji:pixelsize=10;1"
 
 modules-left = bspwm
@@ -100,11 +100,11 @@ label-empty-padding = 1
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 玲
-icon-stop = 栗
-icon-play = 契
-icon-pause = 
-icon-next = 怜
+icon-prev = 󰒮
+icon-stop = 󰓛
+icon-play = 󰐊
+icon-pause = 󰏤
+icon-next = 󰒭
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -140,7 +140,7 @@ label = %percentage:2%%
 [base/module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "󰍛 "
 format-prefix-foreground = ${colors.foreground-alt}
 label = %percentage_used%%
 
@@ -208,11 +208,11 @@ label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = "ﱝ"
+label-muted = "󰝟"
 
-ramp-volume-0 = "奄"
-ramp-volume-1 = "奔"
-ramp-volume-2 = "墳"
+ramp-volume-0 = "󰕿"
+ramp-volume-1 = "󰖀"
+ramp-volume-2 = "󰕾"
 
 [base/module/temperature]
 type = internal/temperature
@@ -240,9 +240,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 拉
+label-open = 󰐦
 label-open-foreground = ${colors.foreground}
-label-close = ﰸ cancel
+label-close = 󰜺 cancel
 label-close-foreground = ${colors.foreground}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
