@@ -51,6 +51,7 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig'
+  use 'github/copilot.vim'
 
   -- Auto Completion
   use 'hrsh7th/nvim-cmp'
