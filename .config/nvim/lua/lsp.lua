@@ -46,6 +46,7 @@ lspconfig.tsserver.setup{
   root_dir = lspconfig.util.root_pattern("tsconfig.json"),
   on_attach = on_attach,
   capabilities = capabilities,
+  single_file_support = false,
 }
 lspconfig.denols.setup {
   root_dir = lspconfig.util.root_pattern("deno.json"),
