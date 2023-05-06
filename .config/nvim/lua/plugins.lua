@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
   use 'arthurxavierx/vim-caser'
 
   -- Look
+  use "EdenEast/nightfox.nvim"
   use 'junegunn/seoul256.vim'
   use 'itchyny/lightline.vim'
   use "lukas-reineke/indent-blankline.nvim" -- Show vertical line for indention

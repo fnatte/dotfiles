@@ -1,5 +1,5 @@
 vim.o.background = 'dark'
-vim.cmd [[colorscheme seoul256]]
+vim.cmd [[colorscheme nordfox]]
 
 vim.opt.errorbells = false
 vim.opt.tabstop = 4
