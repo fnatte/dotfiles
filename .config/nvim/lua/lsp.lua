@@ -56,12 +56,21 @@ lspconfig.tsserver.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   single_file_support = false,
+  init_options = {
+    lint = true,
+  },
 }
+
 lspconfig.denols.setup {
   root_dir = lspconfig.util.root_pattern("deno.json"),
   on_attach = on_attach,
   capabilities = capabilities,
+  single_file_support = false,
+  init_options = {
+    lint = true,
+  },
 }
+
 lspconfig.clangd.setup {
   on_attach = on_attach,
   capabilities = capabilities,
