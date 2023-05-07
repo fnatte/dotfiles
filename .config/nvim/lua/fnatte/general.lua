@@ -12,7 +12,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.conceallevel = 0
 
 -- Disable default plugins
-vim.g.loaded_netrwPlugin = 1 
+vim.g.loaded_netrwPlugin = 1
 
 -- Show vertical line for tabs
 vim.opt.list = true

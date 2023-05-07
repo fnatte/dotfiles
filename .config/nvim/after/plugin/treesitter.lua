@@ -1,15 +1,17 @@
 -- Treesitter
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "bash", "c", "c_sharp", "cmake", "cpp", "css", "dart",
-    "dockerfile", "fish", "go", "gomod", "gowork", "graphql", "html",
-    "java", "javascript", "jsdoc", "json", "json5", "jsonc", "kotlin",
-    "latex", "lua", "make", "ninja", "perl", "php", "python", "regex",
-    "ruby", "rust", "scala", "scss", "svelte", "toml", "tsx", "typescript",
-    "vim", "vue", "yaml"
-    },
+  ensure_installed = { "vimdoc", "javascript", "typescript", "lua" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = true,
+
   highlight = {
     enable = true,
   },
+
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -19,9 +21,11 @@ require('nvim-treesitter.configs').setup {
       node_decremental = 'grm',
     },
   },
+
   indent = {
     enable = true,
   },
+
   textobjects = {
     select = {
       enable = true,
@@ -55,6 +59,7 @@ require('nvim-treesitter.configs').setup {
       },
     },
   },
+
   folding = {
     enable = true,
   }
