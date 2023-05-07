@@ -28,7 +28,6 @@ return require('packer').startup(function(use)
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-fugitive' -- Git
   use 'editorconfig/editorconfig-vim'
-  use 'prettier/vim-prettier'
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'wellle/targets.vim'
   use 'arthurxavierx/vim-caser'
