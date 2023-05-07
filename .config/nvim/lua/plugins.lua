@@ -33,9 +33,21 @@ return require('packer').startup(function(use)
   use 'arthurxavierx/vim-caser'
 
   -- Look
-  use "EdenEast/nightfox.nvim"
-  use 'junegunn/seoul256.vim'
-  use 'itchyny/lightline.vim'
+  use({
+    'rose-pine/neovim',
+    dark_variant = 'moon',
+    as = 'rose-pine',
+    config = function()
+      vim.cmd('colorscheme rose-pine')
+    end
+  })
+  use({
+    'nvim-lualine/lualine.nvim',
+    after = 'rose-pine',
+    config = function()
+      require('lualine').setup({ options = { theme = 'rose-pine' } })
+    end
+  })
   use "lukas-reineke/indent-blankline.nvim" -- Show vertical line for indention
 
   -- File Explorer

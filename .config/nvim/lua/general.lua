@@ -1,6 +1,3 @@
-vim.o.background = 'dark'
-vim.cmd [[colorscheme nordfox]]
-
 vim.opt.errorbells = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -40,7 +37,7 @@ vim.opt.scrolloff = 5
 -- Save undo history.
 vim.opt.undofile = true
 
--- Hide the --INSERT-- status text because we show it using lightline status bar
+-- Hide the --INSERT-- status text because we show it using lualine status bar
 vim.opt.showmode = false
 
 -- Set fold method to use tree sitter expressions

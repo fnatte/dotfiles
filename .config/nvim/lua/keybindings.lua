@@ -21,3 +21,14 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- Toggle background color with <leader>bg
+vim.keymap.set("n", "<leader>bg", function()
+    if vim.o.background == 'dark' then
+      vim.o.background = 'light'
+    else
+      vim.o.background = 'dark'
+    end
+  end,
+  {noremap = true, silent = true}
+)
+
