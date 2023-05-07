@@ -40,21 +40,24 @@ return {
   { 'junegunn/limelight.vim', ft = textFts },
   { 'reedes/vim-pencil', ft = textFts },
 
-  -- Programming Languages
+  -- Treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'nvim-treesitter/nvim-treesitter-textobjects',
-  'neovim/nvim-lspconfig',
   'github/copilot.vim',
+
+  -- LSP Support
+  'neovim/nvim-lspconfig',
+  { 'williamboman/mason.nvim', build = ':MasonUpdate' },
+  'williamboman/mason-lspconfig.nvim',
 
   -- Auto Completion
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
-
-  -- Linting
-  { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  'saadparwaiz1/cmp_luasnip',
 
   -- Snippets
   'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
 
+  -- Linting
+  { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 }

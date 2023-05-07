@@ -1,11 +1,13 @@
-require("null-ls").setup({
+null_ls = require("null-ls")
+null_ls.setup({
     sources = {
-        require("null-ls").builtins.diagnostics.eslint.with({
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.eslint.with({
             condition = function(utils)
                 return utils.root_has_file({ ".eslintrc", ".eslintrc.js", ".eslintrc.cjs" })
             end,
         }),
-        require("null-ls").builtins.completion.spell.with({
+        null_ls.builtins.completion.spell.with({
             filetypes = { "markdown", "text" },
         }),
     },
