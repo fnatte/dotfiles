@@ -10,6 +10,9 @@ local ensure_packer = function()
   return false
 end
 
+local packer_bootstrap = ensure_packer()
+
+-- Auto compile when there are changes in plugins.lua
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -17,9 +20,15 @@ vim.cmd([[
   augroup end
 ]])
 
-local textFts = {'markdown', 'plaintex', 'tex', 'text'}
+-- Packer has has two types of plugin configurations: "start" and "opt".
+-- "Start" plugins are loaded automatically, while "opt" plugins are loaded on-demand or conditionally.
+-- The following line is only required if you have packer configured as `opt`.
+vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
+
   -- General
   use 'tpope/vim-repeat'
   use 'tpope/vim-sleuth'
@@ -55,6 +64,7 @@ return require('packer').startup(function(use)
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
 
   -- Writing
+  local textFts = {'markdown', 'plaintex', 'tex', 'text'}
   use { 'junegunn/goyo.vim', ft = textFts }
   use { 'junegunn/limelight.vim', ft = textFts }
   use { 'reedes/vim-pencil', ft = textFts }
