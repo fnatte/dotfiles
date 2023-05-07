@@ -8,7 +8,6 @@ return {
   'tpope/vim-surround',
   'tpope/vim-unimpaired',
   'tpope/vim-fugitive', -- Git
-  'editorconfig/editorconfig-vim',
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   'wellle/targets.vim',
   'arthurxavierx/vim-caser',
