@@ -3,7 +3,7 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 local lspconfig = require('lspconfig')
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -38,7 +38,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local handlers = {
   -- default handler
-  function (server_name)
+  function(server_name)
     require("lspconfig")[server_name].setup {
       on_attach = on_attach,
       capabilities = capabilities,
@@ -46,8 +46,8 @@ local handlers = {
   end,
 
   -- Typescript
-  ["tsserver"] = function ()
-    lspconfig.tsserver.setup{
+  ["tsserver"] = function()
+    lspconfig.tsserver.setup {
       -- Make sure that tsserver is not in conflict with deno
       root_dir = lspconfig.util.root_pattern("tsconfig.json"),
       on_attach = on_attach,
@@ -60,7 +60,7 @@ local handlers = {
   end,
 
   -- Deno
-  ["denols"] = function ()
+  ["denols"] = function()
     lspconfig.denols.setup {
       -- Make sure that denols is not in conflict with tsserver
       root_dir = lspconfig.util.root_pattern("deno.json"),
@@ -74,7 +74,7 @@ local handlers = {
   end,
 
   -- Clang
-  ["clangd"] = function ()
+  ["clangd"] = function()
     lspconfig.clangd.setup {
       on_attach = on_attach,
       capabilities = capabilities,
@@ -84,7 +84,7 @@ local handlers = {
   end,
 
   -- C#
-  ["omnisharp"] = function ()
+  ["omnisharp"] = function()
     lspconfig.omnisharp.setup {
       -- Required because semantic tokens do not conform to the LSP specification
       -- See https://github.com/OmniSharp/omnisharp-roslyn/issues/2483
@@ -148,22 +148,47 @@ local handlers = {
       -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
       -- true
       analyze_open_documents_only = false,
-  }
+    }
   end,
 
   -- Lua
-  ["lua_ls"] = function ()
-      lspconfig.lua_ls.setup {
-          settings = {
-              Lua = {
-                  diagnostics = {
-                      globals = { "vim" }
-                  }
-              }
-          }
+  ["lua_ls"] = function()
+    lspconfig.lua_ls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { "vim" }
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+
+          -- Formatting defaults
+          format = {
+            enable = true,
+            defaultConfig = {
+              indent_style = "space",
+              indent_size = "2",
+            }
+          },
+        }
       }
+    }
   end,
 }
 
 require("mason-lspconfig").setup_handlers(handlers)
-
