@@ -36,9 +36,9 @@ return {
   { 'kyazdani42/nvim-tree.lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
 
   -- Writing
-  { 'junegunn/goyo.vim', ft = textFts },
-  { 'junegunn/limelight.vim', ft = textFts },
   { 'reedes/vim-pencil', ft = textFts },
+  'folke/zen-mode.nvim',
+  'folke/twilight.nvim', -- Dim inactive code during zen mode
 
   -- Treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
