@@ -17,7 +17,7 @@ vim.cmd([[
   augroup end
 ]])
 
-local textFts = {'markdown', 'plaintex', 'tex'}
+local textFts = {'markdown', 'plaintex', 'tex', 'text'}
 
 return require('packer').startup(function(use)
   -- General
