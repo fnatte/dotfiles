@@ -60,4 +60,11 @@ return {
 
   -- Linting
   { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+
+  {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup({})
+    end,
+  },
 }
