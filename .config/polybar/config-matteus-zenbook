@@ -6,9 +6,9 @@ inherit = base/colors
 [bar/top]
 inherit = base/bar/top
 height = 48
-font-0 = "fantasque sans mono nerd font:size=26;6"
-font-1 = "fantasque sans mono nerd font:size=20;0"
-font-2 = "fantasque sans mono nerd font:bold:size=26;6"
+font-0 = "Fantasque Sans M Nerd Font:size=26;6"
+font-1 = "Fantasque Sans M Nerd Font:size=20;0"
+font-2 = "Fantasque Sans M Nerd Font:bold:size=26;6"
 font-3 = "siji:pixelsize=10;1"
 modules-right = filesystem space alsa space battery memory cpu temperature eth date powermenu
 
