@@ -49,6 +49,8 @@ return {
   'neovim/nvim-lspconfig',
   { 'williamboman/mason.nvim', build = ':MasonUpdate' },
   'williamboman/mason-lspconfig.nvim',
+  'mfussenegger/nvim-dap',
+  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
 
   -- Auto Completion
   'hrsh7th/nvim-cmp',
