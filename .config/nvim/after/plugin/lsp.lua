@@ -49,7 +49,7 @@ local handlers = {
   ["tsserver"] = function()
     lspconfig.tsserver.setup {
       -- Make sure that tsserver is not in conflict with deno
-      root_dir = lspconfig.util.root_pattern("tsconfig.json"),
+      root_dir = lspconfig.util.root_pattern("package.json"),
       on_attach = on_attach,
       capabilities = capabilities,
       single_file_support = false,
