@@ -51,6 +51,7 @@ return {
   'williamboman/mason-lspconfig.nvim',
   'mfussenegger/nvim-dap',
   { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
+  { "creativenull/efmls-configs-nvim", dependencies = { "neovim/nvim-lspconfig" } },
 
   -- Auto Completion
   'hrsh7th/nvim-cmp',

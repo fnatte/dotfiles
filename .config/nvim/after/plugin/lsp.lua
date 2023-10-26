@@ -209,5 +209,6 @@ local handlers = {
 }
 
 require("mason-lspconfig").setup_handlers(handlers)
+require("fnatte.lsp.efm").setup(on_attach, capabilities)
 require("fnatte.dap")
 
