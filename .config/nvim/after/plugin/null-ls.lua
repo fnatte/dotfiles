@@ -10,5 +10,8 @@ null_ls.setup({
         null_ls.builtins.completion.spell.with({
             filetypes = { "markdown", "text" },
         }),
+        null_ls.builtins.formatting.clang_format.with({
+            filetypes = { "c", "cpp", "objc", "objcpp" },
+        }),
     },
 })
