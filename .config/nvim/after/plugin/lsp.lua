@@ -79,7 +79,11 @@ local handlers = {
       on_attach = on_attach,
       capabilities = capabilities,
       -- Do not run clangd for proto files
-      filetypes = { "c", "cpp", "objc", "objcpp" }
+      filetypes = { "c", "cpp", "objc", "objcpp" },
+      cmd = {
+        "clangd",
+        "--offset-encoding=utf-16",
+      },
     }
   end,
 
