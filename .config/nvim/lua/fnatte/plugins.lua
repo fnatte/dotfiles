@@ -43,7 +43,6 @@ return {
   -- Treesitter
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   'nvim-treesitter/nvim-treesitter-textobjects',
-  'github/copilot.vim',
 
   -- LSP Support
   'neovim/nvim-lspconfig',
@@ -54,6 +53,7 @@ return {
   { "creativenull/efmls-configs-nvim", dependencies = { "neovim/nvim-lspconfig" } },
 
   -- Auto Completion
+  'github/copilot.vim',
   'hrsh7th/nvim-cmp',
   'hrsh7th/cmp-nvim-lsp',
   'saadparwaiz1/cmp_luasnip',
@@ -61,9 +61,7 @@ return {
   -- Snippets
   'L3MON4D3/LuaSnip',
 
-  -- Linting
-  { "jose-elias-alvarez/null-ls.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
-
+  -- Others
   {
     "folke/which-key.nvim",
     config = function()
