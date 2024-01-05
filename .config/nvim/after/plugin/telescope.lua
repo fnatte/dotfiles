@@ -1,11 +1,20 @@
 -- Telescope
+local actions = require('telescope.actions')
+
 require('telescope').setup {
   defaults = {
     mappings = {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<C-j>'] = actions.move_selection_next,
+        ['<C-k>'] = actions.move_selection_previous,
       },
+      n = {
+        -- Allow both single <Esc> and double <Esc><Esc> to close telescope for convenience
+        ['<Esc>'] = actions.close,
+        ['<Esc><Esc>'] = actions.close,
+      }
     },
   },
 }
