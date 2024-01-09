@@ -14,7 +14,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x redshift > /dev/null || redshift &
 tmux has-session -t $USER > /dev/null || tmux new-session -s $USER -d
 
-xset r rate 200 30
+xset r rate 180 40
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
