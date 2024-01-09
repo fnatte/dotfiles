@@ -14,9 +14,6 @@ vim.opt.conceallevel = 0
 -- Disable default plugins
 vim.g.loaded_netrwPlugin = 1
 
--- Show vertical line for tabs
-vim.opt.list = true
-
 -- Highlight current line in current buffer
 vim.opt.cursorline = true
 vim.cmd([[
