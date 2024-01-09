@@ -36,3 +36,7 @@ bind \cd delete-char
 alias vim='nvim'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
 
+
+type -qf /etc/debuginfod/archlinux.urls &&
+  set -gx DEBUGINFOD_URLS (cat /etc/debuginfod/archlinux.urls)
+
