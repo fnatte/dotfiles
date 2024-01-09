@@ -9,6 +9,7 @@ local M = {}
 -- from require("efmls-configs.formatters.*") and
 -- require("efmls-configs.linters.*")
 
+local prettier = require("efmls-configs.formatters.prettier")
 local format_eslint_d = require("efmls-configs.formatters.eslint_d")
 local lint_eslint_d = require("efmls-configs.linters.eslint_d")
 
@@ -41,6 +42,9 @@ local languages = {
   typescriptreact = {
     format_eslint_d,
     lint_eslint_d,
+  },
+  json = {
+    prettier,
   },
 
   rust = {
