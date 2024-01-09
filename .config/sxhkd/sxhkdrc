@@ -22,6 +22,9 @@ super + Escape
 Print
 	~/.config/sxhkd/scripts/screenshot.sh
 
+super + p
+	~/.config/sxhkd/scripts/screenshot.sh
+
 #
 # bspwm hotkeys
 #
