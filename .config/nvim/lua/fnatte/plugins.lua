@@ -68,4 +68,7 @@ return {
       require("which-key").setup({})
     end,
   },
+
+  -- LLM
+  'David-Kunz/gen.nvim',
 }
