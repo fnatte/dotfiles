@@ -7,10 +7,14 @@ return {
   'tpope/vim-abolish',
   'tpope/vim-surround',
   'tpope/vim-unimpaired',
-  'tpope/vim-fugitive', -- Git
-  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   'wellle/targets.vim',
   'arthurxavierx/vim-caser',
+
+  -- Git
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb', -- Github for GBrowse
+  'shumphrey/fugitive-gitlab.vim', -- Gitlab for GBrowse
+  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Look
   {
