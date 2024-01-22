@@ -27,3 +27,6 @@ require("lazy").setup("fnatte.plugins", {
     },
   },
 })
+
+-- Must be loaded after lazy because it depends on plenary.
+require("fnatte.gitcommit")
