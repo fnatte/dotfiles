@@ -5,7 +5,7 @@ local lspconfig = require('lspconfig')
 
 local keymap = require("fnatte.keymap")
 keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open Diagnostic" })
-keymap.set('n', '[d', vim.diagnostic.goto_prev,  { desc = "Previous Diagnostic" })
+keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
 keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open Diagnostic Location List" })
 
@@ -196,24 +196,23 @@ local handlers = {
   end,
 
   ['rust_analyzer'] = function()
-      lspconfig.rust_analyzer.setup{
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-          ['rust-analyzer'] = {
-            diagnostics = {
-              enable = true;
-              experimental = {
-                    enable = true,
-              },
-            }
+    lspconfig.rust_analyzer.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        ['rust-analyzer'] = {
+          diagnostics = {
+            enable = true,
+            experimental = {
+              enable = true,
+            },
           }
         }
       }
-    end,
+    }
+  end,
 }
 
 require("mason-lspconfig").setup_handlers(handlers)
 require("fnatte.lsp.efm").setup(on_attach, capabilities)
 require("fnatte.dap")
-
