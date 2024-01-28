@@ -20,6 +20,10 @@ end
 -- Make double-<Esc> clear search highlights and close preview window
 keymap.set('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR><Esc>:pc<CR>:ccl<CR>')
 
+-- Use tab/shift-tab to navigate between buffers
+keymap.set('n', '<S-TAB>', ':bnext<CR>')
+keymap.set('n', '<TAB>', ':bprevious<CR>')
+
 -- Move selected lines up/down in visual mode
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
