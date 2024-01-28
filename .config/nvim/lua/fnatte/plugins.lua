@@ -55,6 +55,7 @@ return {
   'mfussenegger/nvim-dap',
   { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
   { "creativenull/efmls-configs-nvim", dependencies = { "neovim/nvim-lspconfig" } },
+  'nanotee/sqls.nvim',
 
   -- Auto Completion
   'github/copilot.vim',

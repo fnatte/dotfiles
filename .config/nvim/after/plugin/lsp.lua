@@ -211,6 +211,21 @@ local handlers = {
       }
     }
   end,
+
+  ['sqls'] = function()
+    lspconfig.sqls.setup {
+      capabilities = capabilities,
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        require('sqls').on_attach(client, bufnr)
+
+        local bufopts = { buffer = bufnr, desc = "Execute Query" }
+        keymap.set('n', '<leader>se', '<Plug>(sqls-execute-query)', bufopts)
+        keymap.set('x', '<leader>se', '<Plug>(sqls-execute-query)', bufopts)
+        keymap.set('x', '<CR>', '<Plug>(sqls-execute-query)', bufopts)
+      end,
+    }
+  end,
 }
 
 require("mason-lspconfig").setup_handlers(handlers)
