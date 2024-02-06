@@ -227,6 +227,22 @@ local handlers = {
       end,
     }
   end,
+
+  ['gopls'] = function()
+    lspconfig.gopls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        gopls = {
+          buildFlags = { "-tags=integration,e2e" },
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    }
+  end
 }
 
 require("mason-lspconfig").setup_handlers(handlers)
