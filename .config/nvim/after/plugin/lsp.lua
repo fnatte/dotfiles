@@ -23,6 +23,7 @@ local on_attach = function(client, bufnr)
   keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
   keymap.set('n', '<leader>f', vim.lsp.buf.format, bufopts)
+  keymap.set('v', '<leader>f', vim.lsp.buf.format, bufopts)
   keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
   keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
   keymap.set('n', '<leader>c', vim.lsp.buf.code_action, bufopts)
