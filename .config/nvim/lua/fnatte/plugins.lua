@@ -1,4 +1,4 @@
-local textFts = {'markdown', 'plaintex', 'tex', 'text'}
+local textFts = { 'markdown', 'plaintex', 'tex', 'text' }
 
 return {
   -- General
@@ -12,9 +12,9 @@ return {
 
   -- Git
   'tpope/vim-fugitive',
-  'tpope/vim-rhubarb', -- Github for GBrowse
+  'tpope/vim-rhubarb',             -- Github for GBrowse
   'shumphrey/fugitive-gitlab.vim', -- Gitlab for GBrowse
-  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'lewis6991/gitsigns.nvim',       dependencies = { 'nvim-lua/plenary.nvim' } },
 
   -- Look
   {
@@ -38,10 +38,10 @@ return {
 
   -- File Explorer
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'kyazdani42/nvim-tree.lua', dependencies = { 'kyazdani42/nvim-web-devicons' } },
+  { 'stevearc/oil.nvim', dependencies = { "nvim-tree/nvim-web-devicons" }, },
 
   -- Writing
-  { 'reedes/vim-pencil', ft = textFts },
+  { 'reedes/vim-pencil',               ft = textFts },
   'folke/zen-mode.nvim',
   'folke/twilight.nvim', -- Dim inactive code during zen mode
 
@@ -51,10 +51,10 @@ return {
 
   -- LSP Support
   'neovim/nvim-lspconfig',
-  { 'williamboman/mason.nvim', build = ':MasonUpdate' },
+  { 'williamboman/mason.nvim',         build = ':MasonUpdate' },
   'williamboman/mason-lspconfig.nvim',
   'mfussenegger/nvim-dap',
-  { 'rcarriga/nvim-dap-ui', dependencies = { 'mfussenegger/nvim-dap' } },
+  { 'rcarriga/nvim-dap-ui',            dependencies = { 'mfussenegger/nvim-dap' } },
   { "creativenull/efmls-configs-nvim", dependencies = { "neovim/nvim-lspconfig" } },
   'nanotee/sqls.nvim',
 
