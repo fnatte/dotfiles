@@ -20,9 +20,13 @@ end
 -- Make double-<Esc> clear search highlights and close preview window
 keymap.set('n', '<Esc><Esc>', '<Esc>:nohlsearch<CR><Esc>:pc<CR>:ccl<CR>')
 
--- Use tab/shift-tab to navigate between buffers
-keymap.set('n', '<S-TAB>', ':bnext<CR>')
-keymap.set('n', '<TAB>', ':bprevious<CR>')
+-- Navigate between buffers.
+-- Fun fact, I initially used <TAB> and <S-TAB> for this, but apparently
+-- due to the way terminals handles these keys, they are not distinguishable
+-- from <C-I> and <C-S-I>. The ASCII for I is 0x49 and the control key will XOR
+-- with 0x40 so it ends up as 0x09 which is the ASCII for TAB. Lesson learned.
+keymap.set('n', '<leader>]', ':bnext<CR>')
+keymap.set('n', '<leader>[', ':bprevious<CR>')
 
 -- Move selected lines up/down in visual mode
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
