@@ -9,11 +9,15 @@ require('telescope').setup {
         ['<C-d>'] = false,
         ['<C-j>'] = actions.move_selection_next,
         ['<C-k>'] = actions.move_selection_previous,
+        ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
       },
       n = {
+        ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+
         -- Allow both single <Esc> and double <Esc><Esc> to close telescope for convenience
         ['<Esc>'] = actions.close,
         ['<Esc><Esc>'] = actions.close,
+
       }
     },
   },
