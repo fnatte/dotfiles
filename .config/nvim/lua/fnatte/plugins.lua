@@ -38,10 +38,10 @@ return {
 
   -- File Explorer
   { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'stevearc/oil.nvim', dependencies = { "nvim-tree/nvim-web-devicons" }, },
+  { 'stevearc/oil.nvim',             dependencies = { "nvim-tree/nvim-web-devicons" }, },
 
   -- Writing
-  { 'reedes/vim-pencil',               ft = textFts },
+  { 'reedes/vim-pencil',             ft = textFts },
   'folke/zen-mode.nvim',
   'folke/twilight.nvim', -- Dim inactive code during zen mode
 
@@ -54,7 +54,7 @@ return {
   { 'williamboman/mason.nvim',         build = ':MasonUpdate' },
   'williamboman/mason-lspconfig.nvim',
   'mfussenegger/nvim-dap',
-  { 'rcarriga/nvim-dap-ui',            dependencies = { 'mfussenegger/nvim-dap' } },
+  { "rcarriga/nvim-dap-ui",            dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   { "creativenull/efmls-configs-nvim", dependencies = { "neovim/nvim-lspconfig" } },
   'nanotee/sqls.nvim',
 
