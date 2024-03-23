@@ -41,6 +41,9 @@ local languages = {
   json = {
     prettier,
   },
+  css = {
+    prettier_d,
+  },
 
   rust = {
     require("efmls-configs.formatters.rustfmt"),
