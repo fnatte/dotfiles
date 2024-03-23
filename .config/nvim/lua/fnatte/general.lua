@@ -42,3 +42,5 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevelstart = 99
 
+-- Add templ file type
+vim.filetype.add({ extension = { templ = "templ" } })
