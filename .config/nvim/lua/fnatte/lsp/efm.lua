@@ -21,6 +21,7 @@ local languages = {
   },
 
   html = { prettier_d },
+  markdown = { prettier_d },
 
   javascript = {
     prettier_d,
