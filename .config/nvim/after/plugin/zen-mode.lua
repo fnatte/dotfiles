@@ -23,11 +23,11 @@ zen_mode.setup({
   },
 
   on_open = function()
-    vim.cmd("IndentBlanklineDisable")
+    vim.cmd("IBLDisable")
   end,
 
   on_close = function()
-    vim.cmd("IndentBlanklineEnable")
+    vim.cmd("IBLEnable")
   end,
 })
 
