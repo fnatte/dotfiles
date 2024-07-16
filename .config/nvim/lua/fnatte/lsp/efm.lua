@@ -32,11 +32,11 @@ local languages = {
     lint_eslint_d,
   },
   typescript = {
-    prettier_d,
+    prettier,
     lint_eslint_d,
   },
   typescriptreact = {
-    prettier_d,
+    prettier,
     lint_eslint_d,
   },
   json = {
