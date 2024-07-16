@@ -1,6 +1,6 @@
 local wk = require("which-key")
 
-wk.register({
-  ["<leader>f"] = { name = "Find (Telescope)" },
+wk.add({
+  { "<leader>f", group = "Find (Telescope)" },
 })
 
