@@ -1,0 +1,38 @@
+#!/bin/bash
+
+no_verbose=false
+generate_template=true
+template=""
+
+# Parse arguments
+new_args=()
+for arg in "$@"; do
+    if [ "$arg" = "--no-verbose" ]; then
+        no_verbose=true
+    elif [ "$arg" = "-t" ]; then
+        generate_template=false
+        new_args+=("$arg")
+    else
+        new_args+=("$arg")
+    fi
+done
+
+# Add verbose flag unless --no-verbose was specified
+if [ "$no_verbose" = false ]; then
+    new_args+=("-v")
+fi
+
+# Generate the template if necessary
+if [ "$generate_template" = true ]; then
+    template="
+# Recent commits:
+$(git log --oneline -n 15 2>/dev/null | sed 's/^/# /')"
+fi
+
+# If the template is not empty, pass it to git commit using process substitution
+# This is necessary because git commit only accepts a file as the -t argument.
+if [ -n "$template" ]; then
+    git commit -t <(echo "$template") "${new_args[@]}"
+else
+    git commit "${new_args[@]}"
+fi
