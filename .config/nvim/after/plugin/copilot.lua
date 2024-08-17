@@ -1,4 +1,6 @@
 vim.g.copilot_filetypes = {
+  gitcommit = true,
+
   TelescopeResults = false,
   TelescopePrompt = false,
   NvimTree = false,
@@ -7,5 +9,4 @@ vim.g.copilot_filetypes = {
   NvimTreeVertSplit = false,
   NvimTreeStatusLine = false,
   NvimTreeStatusLineNC = false,
-  NvimTreeVertSplit = false,
 }
