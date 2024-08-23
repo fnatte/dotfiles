@@ -10,6 +10,7 @@ vim.opt.termguicolors = true
 vim.opt.shell = '/bin/bash' -- nvim-tree.lua has issues with fish shell
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.conceallevel = 0
+vim.opt.colorcolumn = '80'
 
 -- Disable default plugins
 vim.g.loaded_netrwPlugin = 1

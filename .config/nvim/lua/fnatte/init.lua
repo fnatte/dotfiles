@@ -17,7 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 -- set before lazy is loaded.
 require("fnatte.general")
 require("fnatte.keymap")
-require("lazy").setup("fnatte.plugins", {
+require("lazy").setup({
+  spec = {
+    import = "fnatte/plugins",
+  },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -30,3 +33,5 @@ require("lazy").setup("fnatte.plugins", {
 
 -- Must be loaded after lazy because it depends on plenary.
 require("fnatte.gitcommit")
+
+require("fnatte.copilot")

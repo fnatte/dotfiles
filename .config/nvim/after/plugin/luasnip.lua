@@ -1,2 +1,0 @@
-luasnip = require 'luasnip'
-
