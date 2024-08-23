@@ -37,7 +37,12 @@ return {
   "lukas-reineke/indent-blankline.nvim", -- Show vertical line for indention
 
   -- File Explorer
-  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'fbuchlak/telescope-directory.nvim',
+    },
+  },
   { 'stevearc/oil.nvim',             dependencies = { "nvim-tree/nvim-web-devicons" }, },
 
   -- Writing
