@@ -49,9 +49,9 @@ local config = function()
     end,
 
     -- Typescript
-    ["tsserver"] = function()
-      lspconfig.tsserver.setup {
-        -- Make sure that tsserver is not in conflict with deno
+    ["ts_ls"] = function()
+      lspconfig.ts_ls.setup {
+        -- Make sure that ts_ls is not in conflict with deno
         root_dir = lspconfig.util.root_pattern("package.json"),
         on_attach = on_attach,
         capabilities = capabilities,
@@ -65,7 +65,7 @@ local config = function()
     -- Deno
     ["denols"] = function()
       lspconfig.denols.setup {
-        -- Make sure that denols is not in conflict with tsserver
+        -- Make sure that denols is not in conflict with ts_ls
         root_dir = lspconfig.util.root_pattern("deno.json"),
         on_attach = on_attach,
         capabilities = capabilities,
