@@ -40,7 +40,7 @@ local languages = {
     lint_eslint_d,
   },
   json = {
-    prettier,
+    prettier_d,
   },
   css = {
     prettier_d,
