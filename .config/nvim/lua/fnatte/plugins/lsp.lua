@@ -10,6 +10,10 @@ local config = function()
   keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
   keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open Diagnostic Location List" })
 
+  local lsp_format = function()
+    vim.lsp.buf.format { filter = function(client) return client.name ~= "ts_ls" end }
+  end
+
   local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -23,8 +27,8 @@ local config = function()
     keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
-    keymap.set('n', '<leader>f', vim.lsp.buf.format, bufopts)
-    keymap.set('v', '<leader>f', vim.lsp.buf.format, bufopts)
+    keymap.set('n', '<leader>f', lsp_format, bufopts)
+    keymap.set('v', '<leader>f', lsp_format, bufopts)
     keymap.set('n', '<leader>r', vim.lsp.buf.rename, bufopts)
     keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
     keymap.set('n', '<leader>c', vim.lsp.buf.code_action, bufopts)
