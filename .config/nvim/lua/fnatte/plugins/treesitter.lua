@@ -1,6 +1,7 @@
 local config = function()
   require('nvim-treesitter.configs').setup {
-    ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "markdown" },
+    ensure_installed = { "vimdoc", "javascript", "typescript", "lua",
+      "markdown", "markdown_inline", "python" },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -38,8 +39,8 @@ local config = function()
           -- You can use the capture groups defined in textobjects.scm
           ['af'] = '@function.outer',
           ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
+          ["ic"] = { query = "@code_cell.inner", desc = "in cell" },
+          ["ac"] = { query = "@code_cell.outer", desc = "around cell" },
         },
       },
       move = {
@@ -48,6 +49,7 @@ local config = function()
         goto_next_start = {
           [']m'] = '@function.outer',
           [']]'] = '@class.outer',
+          ["]c"] = { query = "@code_cell.inner", desc = "next code cell" },
         },
         goto_next_end = {
           [']M'] = '@function.outer',
@@ -56,6 +58,7 @@ local config = function()
         goto_previous_start = {
           ['[m'] = '@function.outer',
           ['[['] = '@class.outer',
+          ["[c"] = { query = "@code_cell.inner", desc = "previous code cell" },
         },
         goto_previous_end = {
           ['[M'] = '@function.outer',
