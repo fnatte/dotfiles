@@ -2,6 +2,8 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+local is_darwin <const> = wezterm.target_triple:find("darwin") ~= nil
+
 -- Fix for Hyprland issue
 if os.getenv("XDG_CURRENT_DESKTOP") == "Hyprland" then
 	config.enable_wayland = false
@@ -9,11 +11,28 @@ else
 	config.enable_wayland = true
 end
 
+
+-- MacOS specifics
+if is_darwin then
+	config.default_prog = { '/opt/homebrew/bin/fish' }
+end
+
 -- Appearance
 config.color_scheme = 'rose-pine-moon'
-config.font = wezterm.font("Fantasque Sans M Nerd Font")
-config.font_size = 13.0
-config.window_background_opacity = 0.9
+
+if is_darwin then
+	config.font = wezterm.font('FantasqueSansM Nerd Font Mono')
+	config.font_size = 19.0
+	config.window_background_opacity = 0.975
+	config.window_frame = {
+		font = wezterm.font { family = 'FantasqueSansM Nerd Font Mono', weight = 'Bold' },
+		font_size = 17.0,
+	}
+else
+	config.font = wezterm.font("Fantasque Sans M Nerd Font Mono")
+	config.font_size = 13.0
+	config.window_background_opacity = 0.9
+end
 
 -- Keybindings
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
