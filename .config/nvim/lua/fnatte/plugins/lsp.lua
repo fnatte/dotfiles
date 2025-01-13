@@ -64,6 +64,17 @@ local config = function()
           lint = true,
         },
       }
+    end, 
+
+    -- ESLint
+    ["eslint"] = function()
+      lspconfig.eslint.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          format = false,
+        },
+      }
     end,
 
     -- Deno

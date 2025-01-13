@@ -7,7 +7,6 @@ local M = {}
 
 local prettier = require("efmls-configs.formatters.prettier")
 local prettier_d = require("efmls-configs.formatters.prettier_d")
-local lint_eslint_d = require("efmls-configs.linters.eslint_d")
 
 local languages = {
   lua = {
@@ -25,19 +24,15 @@ local languages = {
 
   javascript = {
     prettier_d,
-    lint_eslint_d,
   },
   javascriptreact = {
     prettier_d,
-    lint_eslint_d,
   },
   typescript = {
     prettier,
-    lint_eslint_d,
   },
   typescriptreact = {
     prettier,
-    lint_eslint_d,
   },
   json = {
     prettier_d,
