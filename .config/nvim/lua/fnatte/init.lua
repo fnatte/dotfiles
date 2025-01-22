@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Note that lazy must be loaded after kepmap because the <leader> key must be
 -- set before lazy is loaded.
 require("fnatte.general")
+require("fnatte.commands")
 require("fnatte.keymap")
 require("lazy").setup({
   spec = {
