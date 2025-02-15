@@ -19,6 +19,35 @@ end
 
 -- Appearance
 config.color_scheme = 'rose-pine-moon'
+config.colors = { -- Bundled rose-pine-moon colors are outdated/wrong
+	foreground = "#e0def4",
+	background = "#232136",
+	cursor_bg = "#e0def4",
+	cursor_border = "#e0def4",
+	cursor_fg = "#232136",
+	selection_fg = "#e0def4",
+	selection_bg = "#44415a",
+	ansi = {
+		"#393552",
+		"#eb6f92",
+		"#3e8fb0",
+		"#f6c177",
+		"#9ccfd8",
+		"#c4a7e7",
+		"#ea9a97",
+		"#e0def4",
+	},
+	brights = {
+		"#6e6a86",
+		"#eb6f92",
+		"#3e8fb0",
+		"#f6c177",
+		"#9ccfd8",
+		"#c4a7e7",
+		"#ea9a97",
+		"#e0def4",
+	},
+}
 
 if is_darwin then
 	config.font = wezterm.font('FantasqueSansM Nerd Font Mono')
@@ -31,7 +60,7 @@ if is_darwin then
 else
 	config.font = wezterm.font("Fantasque Sans M Nerd Font Mono")
 	config.font_size = 13.0
-	config.window_background_opacity = 0.9
+	config.window_background_opacity = 0.95
 end
 
 -- Keybindings
