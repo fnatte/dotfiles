@@ -35,4 +35,4 @@ require("lazy").setup({
 -- Must be loaded after lazy because it depends on plenary.
 require("fnatte.gitcommit")
 
-require("fnatte.copilot")
+-- require("fnatte.copilot")
