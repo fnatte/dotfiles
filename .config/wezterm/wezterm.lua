@@ -26,6 +26,25 @@ if is_darwin then
 	}
 end
 
+-- Session management
+local sessionizer = wezterm.plugin.require "https://github.com/mikkasendke/sessionizer.wezterm"
+local session_schema = {
+	sessionizer.DefaultWorkspace {},
+	sessionizer.AllActiveWorkspaces {},
+	sessionizer.FdSearch {
+		wezterm.home_dir .. "/Code",
+		max_depth = 3,
+		fd_path = is_darwin and "/opt/homebrew/bin/fd" or nil
+	},
+	wezterm.home_dir .. "/.config/wezterm",
+    wezterm.home_dir .. "/.config/nvim",
+
+	-- Make paths more readable by replacing home directory with ~
+	processing = sessionizer.for_each_entry(function(entry)
+		entry.label = entry.label:gsub(wezterm.home_dir, "~")
+	end)
+}
+
 
 -- MacOS specifics
 if is_darwin then
@@ -120,6 +139,20 @@ config.keys = {
 		key = 'a',
 		mods = 'LEADER|CTRL',
 		action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' },
+	},
+
+	-- Workspaces
+	{
+		key = "p",
+		mods = "LEADER",
+		action = sessionizer.show(session_schema),
+	},
+	{
+		key = 'P',
+		mods = 'LEADER',
+		action = wezterm.action.ShowLauncherArgs {
+			flags = 'FUZZY|WORKSPACES',
+		},
 	},
 }
 
