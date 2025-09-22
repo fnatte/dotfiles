@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 
+
 local config = wezterm.config_builder()
 
 local is_darwin <const> = wezterm.target_triple:find("darwin") ~= nil
@@ -9,6 +10,20 @@ if os.getenv("XDG_CURRENT_DESKTOP") == "Hyprland" then
 	config.enable_wayland = false
 else
 	config.enable_wayland = true
+end
+
+-- Configure PATH on MacOS so that wezterm can find homebrew binaries, etc.
+-- This is needed because wezterm is likely not launched from a shell, but
+-- rather from the GUI (Spotlight).
+if is_darwin then
+	config.set_environment_variables = {
+		PATH = os.getenv("PATH") .. ":" .. table.concat({
+			"/opt/homebrew/bin",
+			wezterm.home_dir .. "/.local/bin",
+			wezterm.home_dir .. "/bin",
+			wezterm.home_dir .. "/go/bin",
+		}, ":"),
+	}
 end
 
 
