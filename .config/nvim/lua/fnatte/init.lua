@@ -30,6 +30,10 @@ require("lazy").setup({
       },
     },
   },
+  change_detection = {
+    enable = false,
+    notify = false,
+  },
 })
 
 -- Must be loaded after lazy because it depends on plenary.
