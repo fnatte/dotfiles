@@ -1,6 +1,6 @@
 vim.api.nvim_create_user_command(
   'CloseBuffersExceptCurrent',
-  function (opts)
+  function(opts)
     -- Store cursor position
     local cursor = vim.fn.getpos('.')
 
