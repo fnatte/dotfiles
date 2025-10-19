@@ -43,5 +43,6 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevelstart = 99
 
--- Add templ file type
+-- Add file types
 vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({ extension = { beancount = "beancount", bean = "beancount" } })
