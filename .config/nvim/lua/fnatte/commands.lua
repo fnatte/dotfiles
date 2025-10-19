@@ -12,7 +12,13 @@ vim.api.nvim_create_user_command(
 
     -- Restore cursor position
     vim.fn.setpos('.', cursor)
-
   end,
   { nargs = 0 }
 )
+
+vim.api.nvim_create_user_command("YankFilePath", function()
+  local path = vim.fn.expand("%") -- relative to cwd
+  vim.fn.setreg("+", path)
+  vim.fn.setreg('"', path)
+  print("Yanked: " .. path)
+end, {})

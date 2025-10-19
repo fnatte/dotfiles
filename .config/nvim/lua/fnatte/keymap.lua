@@ -47,4 +47,7 @@ keymap.set("n", "<leader>bg", function()
   { desc = "Toggle Background Color" }
 )
 
+-- Yank file path to clipboard
+keymap.set("n", "<leader>yfp", ":YankFilePath<CR>", { desc = "Yank File Path" })
+
 return keymap
