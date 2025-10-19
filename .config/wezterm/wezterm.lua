@@ -34,10 +34,9 @@ local session_schema = {
 	sessionizer.FdSearch {
 		wezterm.home_dir .. "/Code",
 		max_depth = 3,
-		fd_path = is_darwin and "/opt/homebrew/bin/fd" or nil
+		fd_path = is_darwin and "/opt/homebrew/bin/fd" or "/usr/bin/fd",
 	},
 	wezterm.home_dir .. "/.config/wezterm",
-    wezterm.home_dir .. "/.config/nvim",
 
 	-- Make paths more readable by replacing home directory with ~
 	processing = sessionizer.for_each_entry(function(entry)
@@ -50,6 +49,7 @@ local session_schema = {
 if is_darwin then
 	config.default_prog = { '/opt/homebrew/bin/fish' }
 end
+
 
 -- Appearance
 config.color_scheme = 'rose-pine-moon'
