@@ -6,6 +6,7 @@
   "cmp-path": { "branch": "main", "commit": "c642487086dbd9a93160e1679a1327be111cbc25" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "copilot.vim": { "branch": "release", "commit": "c2c435419e081a87e909e8979c66d874e75e4155" },
+  "d2-vim": { "branch": "master", "commit": "cb3eb7fcb1a2d45c4304bf2e91077d787b724a39" },
   "efmls-configs-nvim": { "branch": "main", "commit": "c01b0831487238128ff4197bd4a7902dd4fce6c6" },
   "fugitive-gitlab.vim": { "branch": "master", "commit": "3584cf7e607ba7822f991d407a8d780e05aae287" },
   "gen.nvim": { "branch": "main", "commit": "c8e1f574d4a3a839dde73a87bdc319a62ee1e559" },
