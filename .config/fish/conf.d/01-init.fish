@@ -2,6 +2,7 @@ if test -e ~/.secrets.sh
   source ~/.secrets.sh
 end
 
+set -g fish_greeting
 set fish_prompt_pwd_dir_length 2
 
 set -xg EDITOR 'nvim'
