@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 require("fnatte.general")
 require("fnatte.commands")
 require("fnatte.keymap")
+require("fnatte.browse")
 require("lazy").setup({
   spec = {
     import = "fnatte/plugins",
