@@ -201,6 +201,7 @@ local config = function()
   vim.lsp.enable( { 'beancount' })
 
   require('fnatte.lsp.efm').setup(on_attach, capabilities)
+  vim.lsp.enable({ 'efm' })
 end
 
 return {

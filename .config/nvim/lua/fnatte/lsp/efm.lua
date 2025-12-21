@@ -1,8 +1,3 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  return
-end
-
 local M = {}
 
 local prettier = require("efmls-configs.formatters.prettier")
@@ -51,7 +46,7 @@ local languages = {
 }
 
 M.setup = function(on_attach, capabilities)
-  lspconfig.efm.setup({
+  vim.lsp.config('efm', {
     filetypes = vim.tbl_keys(languages),
     settings = {
       rootMarkers = { ".git/" },
