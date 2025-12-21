@@ -13,10 +13,10 @@ set -xg NVM_DIR '/usr/share/nvm'
 
 # Append PATH
 set -gx PATH $PATH $HOME/bin
+type -qf /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
 type -q yarn && set -gx PATH $PATH (yarn bin)
 type -q go && set -gx PATH $PATH (go env GOPATH)/bin
 type -q composer && set -gx PATH $PATH (composer global config bin-dir --absolute --quiet)
-type -qf /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
 test -d $HOME/.cargo/bin && set -gx PATH $PATH $HOME/.cargo/bin/
 
 # GCloud
