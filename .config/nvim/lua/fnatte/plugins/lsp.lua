@@ -196,9 +196,9 @@ local config = function()
     end,
   })
 
-  vim.lsp.enable({ 'ts_ls', 'eslint', 'lua_ls', 'clangd', 'rust_analyzer', 'gopls', 'pyright', 'sqls' })
+  vim.lsp.enable({ 'ts_ls', 'eslint', 'lua_ls', 'clangd', 'rust_analyzer', 'gopls', 'pyright', 'sqls', 'phpactor' })
 
-  vim.lsp.enable( { 'beancount' })
+  vim.lsp.enable({ 'beancount' })
 
   require('fnatte.lsp.efm').setup(on_attach, capabilities)
   vim.lsp.enable({ 'efm' })
