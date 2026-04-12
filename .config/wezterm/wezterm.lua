@@ -28,7 +28,9 @@ end
 
 -- Session management
 local sessionizer = wezterm.plugin.require "https://github.com/mikkasendke/sessionizer.wezterm"
+local history = wezterm.plugin.require "https://github.com/mikkasendke/sessionizer-history.git"
 local session_schema = {
+	history.MostRecentWorkspace {},
 	sessionizer.DefaultWorkspace {},
 	sessionizer.AllActiveWorkspaces {},
 	sessionizer.FdSearch {
@@ -41,7 +43,12 @@ local session_schema = {
 	-- Make paths more readable by replacing home directory with ~
 	processing = sessionizer.for_each_entry(function(entry)
 		entry.label = entry.label:gsub(wezterm.home_dir, "~")
-	end)
+	end),
+
+	options = {
+		-- So history plugin knows when you select and switch to a workspace
+		callback = history.Wrapper(sessionizer.DefaultCallback),
+	},
 }
 
 
