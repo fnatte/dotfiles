@@ -18,6 +18,7 @@ vim.opt.rtp:prepend(lazypath)
 require("fnatte.general")
 require("fnatte.commands")
 require("fnatte.keymap")
+require("fnatte.treesitter")
 require("fnatte.browse")
 require("lazy").setup({
   spec = {
