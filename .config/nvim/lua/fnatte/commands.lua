@@ -17,8 +17,11 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command("YankFilePath", function()
-  local path = vim.fn.expand("%") -- relative to cwd
-  vim.fn.setreg("+", path)
-  vim.fn.setreg('"', path)
-  print("Yanked: " .. path)
+  local abs = vim.fn.expand("%:p")           -- always absolute
+  local rel = vim.fn.fnamemodify(abs, ":.")  -- relative to cwd
+
+  vim.fn.setreg("+", rel)
+  vim.fn.setreg('"', rel)
+
+  print("Yanked: " .. rel)
 end, {})
