@@ -39,6 +39,8 @@ local session_schema = {
 		fd_path = is_darwin and "/opt/homebrew/bin/fd" or "/usr/bin/fd",
 	},
 	wezterm.home_dir .. "/.config/wezterm",
+	wezterm.home_dir .. "/.config/nvim",
+	wezterm.home_dir .. "/.config/hypr",
 
 	-- Make paths more readable by replacing home directory with ~
 	processing = sessionizer.for_each_entry(function(entry)
